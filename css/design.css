@@ -48,7 +48,7 @@ a:visited{
 	text-decoration:none;
 }
 a:hover{
-	text-decoration:blink underline;
+	text-decoration:underline;
 	color:#C90;
 }
 

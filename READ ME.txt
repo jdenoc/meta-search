@@ -1,7 +1,7 @@
-V-2.2
+V-3.1
 
-Results display has been updated to display a javascript warning for any links that had difficulty accessing.
-Function site_title updated/improved to display less 404 errors.
-Function link_to_dict updated, so that link weight assigns appropriate weight from search page.
+Functions in result_display.py moved to result_mod.py.
+result_display.py deleted.
+Minor errors solved
 
 ONLINE TESTED!

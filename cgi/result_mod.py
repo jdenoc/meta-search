@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		2.2
+## Version:		3.1
 ##
 import urllib
 import re
@@ -34,20 +34,11 @@ def link_checker(link):
 	
 def site_title(read_file):
 # searches a site for a title or heading
-	heading_criterion = "[\.\n]*"
-
 	title_match1 = re.search(r'(<title.*>)(.+)(</title>)', read_file, re.DOTALL)
 	title_match2 = re.search(r'(<TITLE.*>)(.+)(</TITLE>)', read_file, re.DOTALL)
 	h1_match1 = re.search(r'(<h1.*>)(.+)(/h1>)', read_file)
 	h1_match2 = re.search(r'(<H1.*>)(.+)(/H1>)', read_file)
-	
-	"""
-	title_match1 = re.search(r'(<title.*>)('+heading_criterion+')(</title>)', read_file)
-	title_match2 = re.search(r'(<TITLE.*>)('+heading_criterion+')(</TITLE>)', read_file)
-	h1_match1 = re.search(r'(<h1.*>)('+heading_criterion+')(/h1>)', read_file)
-	h1_match2 = re.search(r'(<H1.*>)('+heading_criterion+')(/H1>)', read_file)
-	"""	
-	
+		
 	if title_match1:
 		heading = title_match1.group(2)
 	elif h1_match1:
@@ -71,6 +62,40 @@ def show_links(dict):
 	links = sorted(dict, key=dict.get, reverse=True)
 	i = 1
 	for url in links:
-		print '<tr><td>', i, '</td>', '<td><a href="'+link_checker(url)+'</a></tr>'
+		print '<tr><td>', i, '</td>', '<td><a href="'+link_checker(url)+'</a></td></tr>'
 		print '<tr><td>&nbsp;</td><td><span class="blue_link">'+url+'</span></td></tr>'
 		i = i+1
+		
+def column_results(ddgo_dict, bing_dict, yahoo_dict):
+	print """
+	<tr>
+		<td colspan="6">&nbsp;</td>
+	</tr><tr>
+		<td><strong>DuckDuckGo Results</strong></td>
+		<td><strong>Bing Results</strong></td>
+		<td><strong>Yahoo Results</strong></td>
+	</tr><tr>
+		<td colspan="6"><hr/></td>
+	</tr><tr><td valign="top"><table border="0">
+	"""
+	show_links(ddgo_dict)
+	print '</table></td><td valign="top"><table border = "0">'
+	show_links(bing_dict)
+	print '</table></td><td valign="top"><table border="0">'
+	show_links(yahoo_dict)
+	print '</table></td></tr>'
+		
+def result_option(option, dict, ddgo_dict, bing_dict, yahoo_dict):
+	if option == 'all':
+		show_links(dict)
+	elif option == 'col':
+		column_results(ddgo_dict, bing_dict, yahoo_dict)
+	elif option == 'yahoo':
+		print 'Yahoo! Results'
+		show_links(yahoo_dict)
+	elif option == 'bing':
+		print 'Bing Results'
+		show_links(bing_dict)
+	elif option == 'ddgo':
+		print 'DuckDuckGo Results'
+		show_links(ddgo_dict)

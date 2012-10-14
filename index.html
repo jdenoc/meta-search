@@ -8,13 +8,11 @@
 	function goodbye(){
 		alert("Sorry to see you leave!");
 	}
-</script>
 <!-- END GOODBYE -->
 
 <!-- Search Validation -->
 <!-- function will warn the user if they haven't entered anything into the search box -->
 <!-- code-source:	http://www.w3schools.com/JS/js_form_validation.asp	-->
-<script type="text/javascript">
 	function valid_search(){
 		var x=document.forms["engine"]["search"].value
 		if (x==null || x==""){
@@ -22,12 +20,10 @@
 			return false;
 		}
 	}
-</script>
 <!-- END Search Validation -->
 
-<!-- PAGE OPEN CONFIRMATION --
-<script type="text/javascript">
-	var disclaim = "Disclaimer:\n"+
+<!-- PAGE OPEN CONFIRMATION -->
+/*	var disclaim = "Disclaimer:\n"+
 			"This page has been developed as part of a MSc. Computer Science course work & therefore academic in basis.\n"+
 			"All rights & trademarks are reserved by those that may appear in this site.\n"+
 			"Please click on OK to continue loading the Meta-Search Engine, or CANCEL to be directed to the DuckDuckGo site.";
@@ -36,9 +32,28 @@
 	if (!answer){
 		goodbye();
 		window.location="http://www.duckduckgo.com/";
+	}*/
+<!-- END PAGE OPEN CONFIRMATION -->
+</script>
+
+<!-- Hiding/toggle Advanced Settings -->
+<script>
+	function toggle(){
+		var adv_opts = document.getElementById("advanced_options");
+		var state1 = document.getElementById("hide");
+		var state2 = document.getElementById("show");
+		if(state1.style.display == "block"){
+			state1.style.display = "none";
+			state2.style.display = "block";
+			adv_opts.innerHTML = "<strong>Advanced Settings &#9650;</strong>";
+		} else {
+			state1.style.display = "block";
+			state2.style.display = "none";
+			adv_opts.innerHTML = "<strong>Advanced Settings &#9660;</strong>";
+		}
 	}
 </script>
-<!-- END PAGE OPEN CONFIRMATION -->
+<!-- END Hiding/toggle Advanced Settings -->
 
 <title>Meta-Search</title>
 <link rel="stylesheet" href="css/design.css" />
@@ -51,7 +66,8 @@
     	<td colspan="2">
         	<h1>Meta-Search Engine</h1>
         </td>
-    </tr><tr><!-- SEARCH -->
+    </tr><tr>
+	<!-- SEARCH -->
     	<td align="right"><input type="text" name="search" id="search-box"/></td>
         <td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" /></td>
 	</tr><tr>
@@ -59,9 +75,9 @@
 			Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" checked />On&nbsp;&nbsp;
 			<input type="radio" name="process" value="" />Off
 		</td>
-	</tr><tr><!-- END SEARCH -->
-		<td>&nbsp;</td>
-	</tr><tr class="testing"> <!-- SEARCH ENGINE REFERENCES -->
+	<!-- END SEARCH -->
+	</tr><tr class="testing">
+	<!-- SEARCH ENGINE REFERENCES -->
     	<td colspan="2">Powered by:&nbsp;&nbsp;
 			<img src="imgs/icons/ddgo.ico" alt="DuckDuckGo"/>
 			<a href="http://duckduckgo.com/" class="engines" onclick="goodbye()">DuckDuckGo</a>&nbsp;&nbsp;
@@ -76,7 +92,44 @@
             <img src="imgs/icons/google.ico" alt="Google"/>
             <a href="http://www.google.ie/" class="engines" onclick="goodbye()">Google</a>&nbsp;
 		</td>
-	</tr><!-- END SEARCH ENGINE REFERENCES -->
+	<!-- END SEARCH ENGINE REFERENCES -->
+	</tr><tr>
+		<td><!-- Advanced Settings -->
+			<a href="javascript:toggle();" id="advanced_options" title="Show/Hide Advanced Settings"><strong>Advanced Settings &#9660;</strong></a>
+			<div id="hide" style="display:block"></div>
+			<div id="show" style="display:none"><table>
+				<tr><td><em>Engine Display:</em></td></tr>
+				<tr>
+					<td>Aggrigated</td>
+					<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
+				</tr><tr>
+					<td>Columned</td>
+					<td align="center"><input type="radio" name="adv_dis" value="col" /></td>
+				</tr><tr>
+					<td>Bing Results Only</td>
+					<td align="center"><input type="radio" name="adv_dis" value="bing" /></td>
+				</tr><tr>
+					<td>DuckDuckGo Results Only</td>
+					<td align="center"><input type="radio" name="adv_dis" value="ddgo" /></td>
+				</tr><tr>
+					<td>Yahoo! Results Only</td>
+					<td align="center"><input type="radio" name="adv_dis" value="yahoo" /></td>
+				</tr><tr>
+					<td>&nbsp;</td>
+				</tr><tr>
+					<td align="center"><strong>Max Results</strong></td>
+					<td><select name="max">
+						<option value="1">30/10</option>
+						<option value="2">60/20</option>
+						<option value="3">90/30</option>
+						<option value="4">120/40</option>
+						<option value="5">150/50</option>
+						<option value="6">180/60</option>
+						<option value="7">210/70</option>
+					</select></td>
+			</table></div>
+		</td><!-- END Advanced Settings -->
+	</tr>
 </form></table>
 </div></body>
 </html>
