@@ -1,6 +1,4 @@
-V-5.2
+V-5.3
 
-File stats_mod.py created
-Functions in google_api.py integrated into stats_mod.py.
-google_api.py deleted.
-
+test.py file created to test functions in stats_mod.py.
+test.py file is an extremely cut down version of search.cgi file, holding only the most necessary of function calls.
