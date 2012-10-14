@@ -1,6 +1,6 @@
 /*
 Filename:	alerts.js
-Version:	6.0.1
+Version:	6.1
 
  */
 
@@ -46,7 +46,6 @@ function hideStuff(id) {
 }
 /* *** END SHOW/HIDE items *** */
 
-
 /* *** DEAD LINK *** */
 // This script prompts a user to confirm that they wish to continue to a webpage & that they have been warned that the webpage may not exist
 function dead_link(){
@@ -73,4 +72,11 @@ function too_many(){
 		return false;
 	}
 }
-/* *** END TOO MANY LINKS *** */
+/* *** END TOO MANY LINKS *** *
+
+/* *** CHANGE DISPLAY *** */
+// This function allows the user to resubmit the search as a different display
+function change_display(){
+	document.engine.submit();
+}
+/* *** END CHANGE DISPLAY */

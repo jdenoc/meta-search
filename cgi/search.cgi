@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.0.1
+## Version:		6.1
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -24,7 +24,7 @@ search_entry = form.getvalue("search")		# stores the entry the user wishes to se
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
 stat = form.getvalue("stat")
-#stat = 'on'
+agr = form.getvalue("agr")
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
 test = ''									# this variable is use for testing only. all related if statements are for testing
 
@@ -47,7 +47,9 @@ else:
 		max_page_count = 1
 	else:
 		max_page_count = total_count/10
-if test:	
+if not agr:
+	agr = 'on'		
+if test:
 	print '**************************end error check**************************'
 ##### END TESTING & ERROR CHECKING#####
 
@@ -87,8 +89,8 @@ while page_count < max_page_count:
 	# if statement done to cut down on unnecessary processing
 		ddgo_read = engine_searcher.open_doc(ddgo_link)
 		url_ddgo = engine_searcher.link_finder_ddgo(ddgo_read)
-		ddgo_dict = result_mod.link_to_dict(ddgo_dict, url_ddgo, max_page_count, page_count)
-		link_dict = result_mod.link_to_dict(link_dict, url_ddgo, max_page_count, page_count)
+		ddgo_dict = result_mod.link_to_dict(ddgo_dict, url_ddgo, max_page_count, page_count, agr)
+		link_dict = result_mod.link_to_dict(link_dict, url_ddgo, max_page_count, page_count, agr)
 		ddgo_link = engine_searcher.next_page_ddgo(ddgo_read)
 		if test:	
 			print '**************************ddgo done**************************', page_count
@@ -98,8 +100,8 @@ while page_count < max_page_count:
 	# if statement done to cut down on unnecessary processing
 		bing_read = engine_searcher.open_doc(bing_link)
 		url_bing = engine_searcher.link_finder_bing(bing_read)
-		bing_dict = result_mod.link_to_dict(bing_dict, url_bing, max_page_count, page_count)
-		link_dict = result_mod.link_to_dict(link_dict, url_bing, max_page_count, page_count)
+		bing_dict = result_mod.link_to_dict(bing_dict, url_bing, max_page_count, page_count, agr)
+		link_dict = result_mod.link_to_dict(link_dict, url_bing, max_page_count, page_count, agr)
 		bing_link = engine_searcher.next_page_bing(search_entry, page_count)
 		if test:	
 			print '**************************bing done**************************', page_count
@@ -109,8 +111,8 @@ while page_count < max_page_count:
 	# if statement done to cut down on unnecessary processing
 		yahoo_read = engine_searcher.open_doc(yahoo_link)
 		url_yahoo = engine_searcher.link_finder_yahoo(yahoo_read)
-		yahoo_dict = result_mod.link_to_dict(yahoo_dict, url_yahoo, max_page_count, page_count)
-		link_dict = result_mod.link_to_dict(link_dict, url_yahoo, max_page_count, page_count)
+		yahoo_dict = result_mod.link_to_dict(yahoo_dict, url_yahoo, max_page_count, page_count, agr)
+		link_dict = result_mod.link_to_dict(link_dict, url_yahoo, max_page_count, page_count, agr)
 		yahoo_link = engine_searcher.next_page_yahoo(yahoo_read)
 		if test:	
 			print '**************************yahoo done**************************', page_count
@@ -195,39 +197,55 @@ print """
 <!-- END SEARCH -->
 </tr></table>
 </div><br/>
-<div id="adv_sys"><table border="0">
+<div id="adv_sys"><table border="0" width="225px">
 <!-- ADVANCED SETTINGS -->
-	<tr><td align="center" colspan="2"><strong>Advanced Settings</strong></td></tr>
+	<tr><td align="center" colspan="2"><strong><u>Display</u></strong></td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td>Standard: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
+
+		<td align="center"><input type="radio" name="adv_dis" value="all" onclick="change_display()" /></td>
 	</tr><tr>
 		<td>Columned: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="col" /></td>
+		<td align="center"><input type="radio" name="adv_dis" value="col" onclick="change_display()" /></td>
 	</tr><tr>
 		<td>Bing Results Only: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="bing" /></td>
+		<td align="center"><input type="radio" name="adv_dis" value="bing" onclick="change_display()" /></td>
 	</tr><tr>
 		<td>DuckDuckGo Results Only: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="ddgo" /></td>
+		<td align="center"><input type="radio" name="adv_dis" value="ddgo" onclick="change_display()" /></td>
 	</tr><tr>
 		<td>Yahoo! Results Only: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="yahoo" /></td>
+		<td align="center"><input type="radio" name="adv_dis" value="yahoo" onclick="change_display()" /></td>
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td align="center"><strong>Maximum Results: </strong></td>
+		<td align="center" colspan="2"><strong>Maximum Results: </strong></td>
 	<tr></tr>
-		<td align="left"><input type="text" name="total" /></td>
+		<td align="center" colspan="2"><input type="text" name="total" /></td>
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td align="center">Stats:</td>
-		<td>
-			<input type="radio" name="stat" value="on" /> ON<br/>
-			<input type="radio" name="stat" value="off" checked /> OFF
-		</td>
+		<td><div id="adv_sets_off" style="display:block">
+			<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('adv_sets_on');hideStuff('adv_sets_off')"><strong>Advanced Settings &#9660;</strong></a>
+		</div><div id="adv_sets_on" style="display:none">
+			<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('adv_sets_off');hideStuff('adv_sets_on')"><strong>Advanced Settings &#9650;</strong></a>
+			<table><tr>
+				<td align="right">Stats:&nbsp;&nbsp;&nbsp;</td>
+				<td>
+					<input type="radio" name="stat" value="on" />ON<br/>
+					<input type="radio" name="stat" value="off" checked />OFF
+				</td>
+			</tr><tr>
+				<td align="right">Aggrigation:</td>
+				<td>
+					<input type="radio" name="agr" value="on" checked />ON<br/>
+					<input type="radio" name="agr" value="off" />OFF
+				</td>
+			</tr></table>
+		</div></td>
+	</tr><tr>
+		<td>&nbsp;</td>
 	</tr>
 """
 if stat == 'on':

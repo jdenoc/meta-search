@@ -1,8 +1,10 @@
-V-6.0.1
+V-6.1
 
-Link score weighting formula in result_mod.py file updated/improved.
-formula now:
-	score = (len(link_set)-link_num)*(weight-weight_limiter)
+JavaScript function change_display added to alert.js to allow instant submit when clicking on one of radio buttons that describe the result layout.
+This function was added so that the user can resubmit the query for a different display format.
 
-See before.jpg for results before link score weighting formula upgrade.
-See after.jpg  for results after link score weighting formula upgrade.
+A show/hide for Advanced Settings was added.
+	Stat	ON/OFF	(option hidden by default)
+	Aggregation ON/OFF	(option hidden by default)
+
+search_test_3.html created to test this layout.

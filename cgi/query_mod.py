@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	query_mod.py
-## Version:		6.0.1
+## Version:		6.1
 ##
 import urllib
 import re
@@ -38,7 +38,17 @@ def search_entry_editor(entry):
 	fixed_entry = '+'.join(fixed_entry)		# rejoins words together with a '+'
 
 	return fixed_entry
-
+"""
 def and_or_not(entry):
 # Edits search entry in such a way that the boolean operators 'AND' 'OR' & 'NOT' work
 	return 0
+	
+	
+def cluster(to_cluster):
+	stopword_file = open('..\\etc\\stopwordList.txt', 'r')
+	word_read = word_file.read()
+	word_list = re.findall(r'\w+', word_read)
+	
+	if (to_cluster in word_list):
+		
+"""
