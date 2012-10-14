@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		5.0.2
+## Version:		5.0.3
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -140,7 +140,9 @@ print """
 	</td>
 </tr><tr>
 <!-- SEARCH -->
-	<td align="right" width="80%"><input type="text" name="search" id="search-box"/></td>
+"""
+print '	<td align="right" width="80%"><input type="text" name="search" id="search-box" value="'+original_search_entry+'" /></td>'
+print """
 	<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
 </tr><tr>
 	<td colspan="2" align="right">

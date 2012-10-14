@@ -1,7 +1,5 @@
-V-5.0.2
+V-5.0.3
 
-Corrected minor code problem in engine_searcher.py file.
-Added feature to show_links function in results_mod.py, where text is displayed if no results are found. 
-Added feature to show_links function in results_mod.py,  where clicking on a link opens a new tab/window. 
-
+Minor fix.
+	search.cgi  updated so that search query now appears in search box of results page.
 ONLINE TESTED!
