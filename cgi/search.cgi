@@ -24,6 +24,7 @@ search_entry = form.getvalue("search")		# stores the entry the user wishes to se
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
 stat = form.getvalue("stat")
+#stat = 'on'
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
 test = ''									# this variable is use for testing only. all related if statements are for testing
 
@@ -154,7 +155,7 @@ if stat == 'on' and (option == 'all' or option == 'col'):
 		if test:	
 			print '**************************Average Precision done**************************'
 	except:
-		stat == 'off'
+		stat = 'off'
 if test:	
 	print '**************************stats done**************************'
 ##### END Google Statistical comparison #####
