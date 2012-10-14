@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		4.2.1
+## Version:		4.2.2
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -21,6 +21,7 @@ form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
+#
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
 test = ''		# this variable is use for testing only. all related if statements are for testing
 
@@ -30,7 +31,7 @@ option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
-	option = 'all'
+	option = 'col'
 if not total_count:		# if user doesn't specify a value, engine will produce up to results found
 	total_count = 100
 	max_page_count = 1

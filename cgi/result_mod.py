@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		4.2.1
+## Version:		4.2.2
 ##
 import urllib
 import re
@@ -66,7 +66,7 @@ def result_option(option, dict, ddgo_dict, bing_dict, yahoo_dict, total_count):
 	if option == 'all':
 		show_links(dict, total_count)
 	elif option == 'col':
-		column_results(ddgo_dict, bing_dict, yahoo_dict)
+		column_results(ddgo_dict, bing_dict, yahoo_dict, total_count)
 	elif option == 'yahoo':
 		print 'Yahoo! Results'
 		show_links(yahoo_dict, total_count)

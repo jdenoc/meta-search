@@ -1,7 +1,6 @@
-V-4.2.1
+V-4.2.2
 
-Minor problem in search.cgi file corrected.
-	Variable total_count was divided by 1 instead of 10.
-End of code-block text added & will only appear if a variable test is valid (not empty).
+Minor Problem fixed in result_mod.py file corrected.
+Variable total_count was missing from column_results function.
 
 ONLINE TESTED!
