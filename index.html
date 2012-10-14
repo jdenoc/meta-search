@@ -2,12 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
+<!-- GOODBYE -->
 <script type="text/javascript">
 <!-- function that will run anytime user leaves page via a link on front page -->
 	function goodbye(){
 		alert("Sorry to see you leave!");
 	}
 </script>
+<!-- END GOODBYE -->
+
+<!-- Search Validation -->
+<!-- function will warn the user if they haven't entered anything into the search box -->
+<!-- code-source:	http://www.w3schools.com/JS/js_form_validation.asp	-->
+<script type="text/javascript">
+	function valid_search(){
+		var x=document.forms["engine"]["search"].value
+		if (x==null || x==""){
+			alert("\t\tWARNING!\nYou haven't searched for anything");
+			return false;
+		}
+	}
+</script>
+<!-- END Search Validation -->
 
 <!-- PAGE OPEN CONFIRMATION --
 <script type="text/javascript">
@@ -30,7 +46,7 @@
 </head>
 
 <body><div id="container">
-<table border="0" width="100%"><form action="cgi/search.cgi" method="get" id="search-form">
+<table border="0" width="100%"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="return valid_search()">
 	<tr>
     	<td colspan="2">
         	<h1>Meta-Search Engine</h1>

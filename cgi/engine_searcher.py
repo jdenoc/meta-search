@@ -1,6 +1,7 @@
 #!/usr/bin/python
 ##
-## Filename: engine_searcher.py
+## Filename:	engine_searcher.py
+## Version:		2.0
 ##
 import urllib
 import re
@@ -27,7 +28,7 @@ def link_trimmer(site_links):
 # END link_trimmer
 
 ###################  individual search engine link finders  ###################
-link_criterion = '[+,\s$=;@?!%&:\w./_()#-]+'
+link_criterion = "[+',\s$=;@?!%&:\w./_()#-]+"
 
 def link_finder_ddgo(ddgo_read):
 # searches through DuckDuckGo site for usable url links
@@ -50,21 +51,24 @@ def link_finder_yahoo(yahoo_read):
 	return yahoo_links
 #END link_finder_yahoo
 
+###################  END of individual search engine link finders  ###################
+
 def next_page_ddgo(ddgo_read):
 # searches HTML code of DuckDuckGo site for a link to next page of results
 	url_match_next = re.search(r'(<!-- <a rel="next" href=".html.+q=)('+link_criterion+')(">Next Page &gt;</a> //-->)', ddgo_read)
 	return url_match_next.group(2)
 #END next_page_ddgo
 
-def next_page_bing(bing_read):
-# searches HTML code for a link to next page of results
-	url_match_next = re.search(r'', bing_read)
+def next_page_bing(search_entry, page_num):
+# searches HTML code of Bing site for a link to next page of results
+	num = str(page_num+1)
+
+	next_page = search_entry+'&first='+num+'1&FORM=PORE'
+	return next_page
 #END next_page_bing
 
 def next_page_yahoo(yahoo_read):
-# searches HTML code for a link to next page of results
+# searches HTML code of Yahoo site for a link to next page of results
 	url_match_next = re.search(r'(<a id="pg-next" href=")('+link_criterion+')(">Next &gt;</a>)', yahoo_read)
 	return url_match_next.group(2)
 #END next_page_yahoo
-
-###################  END of individual search engine link finders  ###################

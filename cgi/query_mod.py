@@ -1,6 +1,7 @@
 #!/usr/bin/python
 ##
-## Filename: query_mod.py
+## Filename:	query_mod.py
+## Version:		2.0
 ##
 import urllib
 import re
@@ -22,7 +23,7 @@ def search_entry_editor(search_entry):
 	fixed = []				# new list created to store edited search words
 	fix = search_entry		# allows for easier code writing/editing
 	fix = fix.lower()		# convert entry to lowercase
-	fix = fix.split('+')
+	fix = fix.split()		# splits all words
 
 	for word in fix:
 	# searches through each word & removes unwanted characters
