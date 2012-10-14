@@ -1,4 +1,4 @@
-V-3.3
+V-3.4
 
-Yahoo search updated.
-link_finder_yahoo function updated to extract title from search engine as well as link.
+Bing search updated
+link_finder_bing function updated to extract title from search engine as well as link.

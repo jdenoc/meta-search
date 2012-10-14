@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		3.3
+## Version:		3.4
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -28,7 +28,7 @@ option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
-	option = 'yahoo'
+	option = 'bing'
 if (not max_page_count) or (max_page_count > 7):
 	max_page_count = 1
 else:

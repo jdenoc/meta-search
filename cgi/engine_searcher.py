@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		3.3
+## Version:		3.4
 ##
 import urllib
 import re
@@ -40,8 +40,7 @@ def link_finder_ddgo(code):
 
 def link_finder_bing(code):	# NEEDS TO BE REVISITED!
 # searches through Bing site for usable url links
-	#<a href="+link_criterion+" onmousedown="return si_T('&amp;ID=SERP,5042.1')">...</a>
-	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T'+link_criterion+'">)(.+)(</a></h3></div><a)', code)
+	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)
 	bing_links = link_trimmer(url_match_bing, 1, 3)
 	return bing_links
 # END link_finder_bing
