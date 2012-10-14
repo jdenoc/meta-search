@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	stats.py
-## Version:		5.6.1
+## Version:		6.0
 ##
 import urllib
 import re
@@ -124,47 +124,110 @@ def stat_display(option, Precision_Scores, Recall_Scores, AP_scores):
 
 # Display Statistics
 	print """
-	<!-- DISPLAY STATISTICS -->
-	<a href="javascript:toggle();" id="stat_display" title="Show/Hide Statistical Analysis"><strong>Statistical Analysis &#9660;</strong></a>
-	<div id="hide" style="display:block"></div>
-	<div id="show" style="display:none">
-		<table border="1"><tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr><tr>
+	<td colspan="2"><!-- DISPLAY STATISTICS -->
+		<div id="hide" style="display:block">
+			<a href="#" title="Show/Hide Statistical Analysis" onclick="showStuff('show');hideStuff('hide')"><strong>Statistical Analysis &#9660;</strong></a>
+		</div>
+		<div id="show" style="display:none"><table>
+		<tr><td>
+			<a href="#" title="Show/Hide Statistical Analysis" onclick="showStuff('hide');hideStuff('show')"><strong>Statistical Analysis &#9650;</strong></a>
+		</td></tr>
+		<tr><td>&nbsp;</td></tr>
+		<tr>
+			<td><div id="stat1_off">
+				&nbsp;&nbsp;<a href="#" title="Show/Hide Precision Scores" onclick="showStuff('stat1_on');hideStuff('stat1_off')"><strong>Precision Scores &#9660;</strong></a>
+			</div><div id="stat1_on" style="display:none">
+				&nbsp;&nbsp;<a href="#" title="Show/Hide Precision Scores" onclick="showStuff('stat1_off');hideStuff('stat1_on')"><strong>Precision Scores &#9650;</strong></a>
+				<table><tr>
+					<td>&nbsp;<img src="../imgs/icons/meta.ico" title="Meta-Search"" alt="Meta-Search" /></td>
+					<td>&nbsp;</td>
 	"""
-	if (option != 'all') and (option != 'col'):
-		print '<td>Statistical Analysis is not available for this display</td>'
-		print '</tr></table></div>'
-	else:
-		print """
-			<td>&nbsp;</td>
-		</tr><tr>
-			<td align="left">Meta-Search</td>
-			<td align="left">Bing</td>
-			<td align="left">Yahoo!</td>
-			<td align="left">DuckDuckGo</td>
-		</tr><tr>
-			<td align="center" colspan="4"><strong>Precision Scores:</strong></td>
-		</tr><tr>
-		"""
-		print '<td>'+meta_pr.group(2)+'</td>'
-		print '<td>'+bing_pr.group(2)+'</td>'
-		print '<td>'+yahoo_pr.group(2)+'</td>'
-		print '<td>'+ddgo_pr.group(2)+'</td>'
-		print """
-		</tr><tr>
-			<td align="center" colspan="4"><strong>Recall Scores:</strong></td>
-		</tr><tr>
-		"""
-		print '<td>'+meta_re.group(2)+'</td>'
-		print '<td>'+bing_re.group(2)+'</td>'
-		print '<td>'+yahoo_re.group(2)+'</td>'
-		print '<td>'+ddgo_re.group(2)+'</td>'
-		print """
-		</tr><tr>
-			<td align="center" colspan="4"><strong>Precision Scores:</strong></td>
-		</tr><tr>
-		"""
-		print '<td>'+meta_ap.group(2)+'</td>'
-		print '<td>'+bing_ap.group(2)+'</td>'
-		print '<td>'+yahoo_ap.group(2)+'</td>'
-		print '<td>'+ddgo_ap.group(2)+'</td>'
-		print '</tr></table></div>'
+	print '	<td>'+meta_pr.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/bing.ico" title="Bing" alt="Bing"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+bing_pr.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/yahoo.ico" title="Yahoo!" alt="Yahoo!"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+yahoo_pr.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/ddgo.ico" title="DuckDuckGo" alt="DuckDuckGo"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+ddgo_pr.group(2)+'</td>'
+	print """
+			</tr></table>
+		</div></td>
+	</tr><tr>
+		<td><div id="stat2_off">
+			&nbsp;&nbsp;<a href="#" title="Show/Hide Recall Scores" onclick="showStuff('stat2_on');hideStuff('stat2_off')"><strong>Recall Scores &#9660;</strong></a>
+		</div><div id="stat2_on" style="display:none">
+			&nbsp;&nbsp;<a href="#" title="Show/Hide Recall Scores" onclick="showStuff('stat2_off');hideStuff('stat2_on')"><strong>Recall Scores &#9650;</strong></a>
+			<table><tr>
+				<td>&nbsp;<img src="../imgs/icons/meta.ico" title="Meta-Search"" alt="Meta-Search" /></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+meta_re.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/bing.ico" title="Bing" alt="Bing"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+bing_re.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/yahoo.ico" title="Yahoo!" alt="Yahoo!"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+yahoo_re.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/ddgo.ico" title="DuckDuckGo" alt="DuckDuckGo"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+ddgo_re.group(2)+'</td>'
+	print """
+			</tr></table>
+		</div></td>
+	</tr><tr>
+		<td><div id="stat3_off">
+			&nbsp;&nbsp;<a href="#" title="Show/Hide Average Precision Scores" onclick="showStuff('stat3_on');hideStuff('stat3_off')"><strong>Average Precision Scores &#9660;</strong></a>
+		</div><div id="stat3_on" style="display:none">
+			&nbsp;&nbsp;<a href="#" title="Show/Hide Average Precision Scores" onclick="showStuff('stat3_off');hideStuff('stat3_on')"><strong>Average Precision Scores &#9650;</strong></a>
+			<table><tr>
+				<td>&nbsp;<img src="../imgs/icons/meta.ico" title="Meta-Search" alt="Meta-Search" /></td>
+				<td>&nbsp;</td>
+	"""
+	print '	<td>'+meta_ap.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/bing.ico" title="Bing" alt="Bing"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '<td>'+bing_ap.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/yahoo.ico" title="Yahoo!" alt="Yahoo!"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '<td>'+yahoo_ap.group(2)+'</td>'
+	print """
+			</tr><tr>
+				<td>&nbsp;<img src="../imgs/icons/ddgo.ico" title="DuckDuckGo" alt="DuckDuckGo"/></td>
+				<td>&nbsp;</td>
+	"""
+	print '<td>'+ddgo_ap.group(2)+'</td>'
+	print """
+			</tr></table>
+		</div></td>
+	</tr></table></div></td></tr>
+	"""

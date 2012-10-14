@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	query_mod.py
-## Version:		5.5
+## Version:		6.0
 ##
 import urllib
 import re

@@ -1,9 +1,8 @@
-V-5.7
+stats_mod.py file has been updated to include a function to display the:
+	* Precision scores
+	* Recall Scores
+	* Average Precision scores
+on the search results page, if stats are on, then the statistical analysis link will appear.
 
-Search results display update.
-Two new files created.
-	javascript_hide.html
-		javascript_hide.html was created to test two new JavaScript functions that will allow text to be shown/hidden on click.
-		These functions have been added to alerts.js, replacing the previous show/hide function.
-	search_test_2.html
-		search_test_2.html was created to test look/layout of the results page with the statistical analysis available.
+Clicking on it will reveal links to see each of the score for each of the search engines.
+Clicking on each of these will reveal the scores.
