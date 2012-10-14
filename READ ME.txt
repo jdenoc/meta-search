@@ -1,13 +1,21 @@
-V-1.0
+V-1.1
 
-Working version of meta-search engine.
-extracts 1st page of results from:
-				* Bing
-				* Yahoo!
-				* DuckDuckGo
-Displays a maximum of 30 results.
-Front page search only.
-javascript functions in index.html that says goodbye to user when clicking on any of the referenced search engine links
+Revised version of code from version 1.0
+Python Code is now modularised into 4 files, instead of 2
 
-
-ONLINE TESTED!
+search_class.py is deleted.
+result_mod.py created.
+	Function link_to_dict moved here.
+	Function site_title moved here.
+	Function show_links moved here.
+engine_searcher.py created.
+	Function open_doc moved here.
+	Function link_trimmer moved here.
+	Function link_finder_ddgo moved here.
+	Function link_finder_bing moved here.
+	Function link_finder_yahoo moved here.
+	Function next_page added. Searches HTML code for a link to next page of results. Not yet inplemented.
+query_mod.py created.
+	Function search_entry_editor moved here.
+	Function tokeniser added. Basic search entry edit. Tokenises the words in search entry by replacing white space with '+' .
+search.cgi updated to process this.
