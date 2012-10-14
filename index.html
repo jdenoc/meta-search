@@ -47,9 +47,13 @@ Version:	5.5
 	<!-- END SEARCH ENGINE REFERENCES -->
 	</tr><tr>
 		<td><!-- Advanced Settings -->
-			<a href="javascript:toggle();" id="advanced_options" title="Show/Hide Advanced Settings"><strong>Advanced Settings &#9660;</strong></a>
-			<div id="hide" style="display:block"></div>
+			<div id="hide" style="display:block">
+				<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('show');hideStuff('hide')"><strong>Advanced Settings &#9660;</strong></a>
+			</div>
 			<div id="show" style="display:none"><table border="0">
+				<tr><td>
+					<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('hide');hideStuff('show')"><strong>Advanced Settings &#9650;</strong></a>
+				</td></tr>
 				<tr><td align="center"><em><u>Engine Display:</u></em></td></tr>
 				<tr>
 					<td>Standard</td>

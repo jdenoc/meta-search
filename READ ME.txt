@@ -1,6 +1,9 @@
-V-5.6.2
+V-5.7
 
-Neccessary changes from 'test.py' file have been applied to 'search.cgi'.
-Search Statistics now available.
-
-ONLINE TESTED! (Minor Problems with alignment discovered)
+Search results display update.
+Two new files created.
+	javascript_hide.html
+		javascript_hide.html was created to test two new JavaScript functions that will allow text to be shown/hidden on click.
+		These functions have been added to alerts.js, replacing the previous show/hide function.
+	search_test_2.html
+		search_test_2.html was created to test look/layout of the results page with the statistical analysis available.

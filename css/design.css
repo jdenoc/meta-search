@@ -1,6 +1,6 @@
 /*
 Filename:	design.css 
-Version:	5.0.3
+Version:	5.7
 */
 
 body{
@@ -55,10 +55,10 @@ h1{
 
 #adv_sys{
 	float: left;
-	width: 200px;
+	width: 240px;
 	height: auto;
-	padding-right:55px;
-	padding-left:25px;
+	padding-right:25px;
+	padding-left:15px;
 }
 
 #results{

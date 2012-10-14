@@ -124,6 +124,7 @@ def stat_display(option, Precision_Scores, Recall_Scores, AP_scores):
 
 # Display Statistics
 	print """
+	<!-- DISPLAY STATISTICS -->
 	<a href="javascript:toggle();" id="stat_display" title="Show/Hide Statistical Analysis"><strong>Statistical Analysis &#9660;</strong></a>
 	<div id="hide" style="display:block"></div>
 	<div id="show" style="display:none">
