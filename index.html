@@ -68,7 +68,7 @@
         </td>
     </tr><tr>
 	<!-- SEARCH -->
-    	<td align="right"><input type="text" name="search" id="search-box"/></td>
+    	<td align="right" width="80%"><input type="text" name="search" id="search-box"/></td>
         <td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" /></td>
 	</tr><tr>
     	<td colspan="2" align="right">
@@ -97,8 +97,8 @@
 		<td><!-- Advanced Settings -->
 			<a href="javascript:toggle();" id="advanced_options" title="Show/Hide Advanced Settings"><strong>Advanced Settings &#9660;</strong></a>
 			<div id="hide" style="display:block"></div>
-			<div id="show" style="display:none"><table>
-				<tr><td><em>Engine Display:</em></td></tr>
+			<div id="show" style="display:none"><table border="0">
+				<tr><td align="center"><em>Engine Display:</em></td></tr>
 				<tr>
 					<td>Aggrigated</td>
 					<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
@@ -118,7 +118,7 @@
 					<td>&nbsp;</td>
 				</tr><tr>
 					<td align="center"><strong>Max Results</strong></td>
-					<td><select name="max">
+					<td align="left"><select name="max">
 						<option value="1">30/10</option>
 						<option value="2">60/20</option>
 						<option value="3">90/30</option>
@@ -127,6 +127,9 @@
 						<option value="6">180/60</option>
 						<option value="7">210/70</option>
 					</select></td>
+				</tr><tr>
+					<td colspan="2">Note: The Maximum Results number is only a maximum number of results. It is unlikely that the meta-search engine will ever produce that many results.</td>
+				</tr>
 			</table></div>
 		</td><!-- END Advanced Settings -->
 	</tr>

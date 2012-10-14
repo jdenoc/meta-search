@@ -29,10 +29,12 @@ if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
 	option = 'all'
-if (not max_page_count) or (max_page_count > 7):
-	max_page_count = 1
-else:
+if max_page_count:
 	max_page_count = int(max_page_count)	# converts a numberical value from a string to an integer
+else:
+	max_page_count = 1
+if max_page_count > 7:
+	max_page_count = 1
 ##### END TESTING & ERROR CHECKING#####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form

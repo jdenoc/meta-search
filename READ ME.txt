@@ -1,7 +1,5 @@
-V-3.1
+V-3.1.1
 
-Functions in result_display.py moved to result_mod.py.
-result_display.py deleted.
-Minor errors solved
+This same code as V-3.1, but site title retrieval is removed from result_mod.py file.
 
 ONLINE TESTED!
