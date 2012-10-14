@@ -1,4 +1,8 @@
-V-5.4.1
+V-5.5
 
-Minor fix applied to search.cgi.
-	Error checking applied to make sure that if any part of the statistcial comparision fails, the statistical comparison will be turned off.
+alert.js file updated.
+	JavaScript toggle function updated to accommodate statistical analysis display.
+search.cgi file updated.
+	Statistical display now available.
+stats_mod.py file updated.
+	stat_display function created to display statistical analysis.

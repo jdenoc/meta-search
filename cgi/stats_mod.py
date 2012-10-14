@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	stats.py
-## Version:		5.4.1
+## Version:		5.5
 ##
 import json
 import urllib
@@ -53,8 +53,7 @@ def Precision(other_engine, google):
 	# Get Precision Scores
 	Precesion = float(rel_score)/float(len(other_engine))
 	return Precesion
-	
-	
+		
 def Recall(other_engine, google):
 # Calculates the recall of a search
 # i.e.: (number of relevant documents retrieved)/(total number of relevant documents)
@@ -106,3 +105,68 @@ def Average_Precision(other_engine, google):
 		AP_score = 0
 	
 	return AP_score
+
+def stat_display(option, Precision_Scores, Recall_Scores, AP_scores):
+# Precision Score Retrieval
+	meta_pr = re.search(r'(\w+:)(\d+\.*\d*)', Precision_Scores[0])
+	bing_pr = re.search(r'(\w+:)(\d+\.*\d*)', Precision_Scores[1])
+	yahoo_pr = re.search(r'(\w+:)(\d+\.*\d*)', Precision_Scores[2])
+	ddgo_pr = re.search(r'(\w+:)(\d+\.*\d*)', Precision_Scores[3])
+	
+# Recall Score Retrieval
+	meta_re = re.search(r'(\w+:)(\d+\.*\d*)', Recall_Scores[0])
+	bing_re = re.search(r'(\w+:)(\d+\.*\d*)', Recall_Scores[1])
+	yahoo_re = re.search(r'(\w+:)(\d+\.*\d*)', Recall_Scores[2])
+	ddgo_re = re.search(r'(\w+:)(\d+\.*\d*)', Recall_Scores[3])
+
+# Average Precision Scores
+	meta_ap = re.search(r'(\w+:)(\d+\.*\d*)', AP_scores[0])
+	bing_ap = re.search(r'(\w+:)(\d+\.*\d*)', AP_scores[1])
+	yahoo_ap = re.search(r'(\w+:)(\d+\.*\d*)', AP_scores[2])
+	ddgo_ap = re.search(r'(\w+:)(\d+\.*\d*)', AP_scores[3])
+
+# Display Statistics
+	print """
+	<a href="javascript:toggle();" id="stat_display" title="Show/Hide Statistical Analysis"><strong>Statistical Analysis &#9660;</strong></a>
+	<div id="hide" style="display:block"></div>
+	<div id="show" style="display:none">
+		<table border="1"><tr>
+	"""
+	if (option != 'all') or (option != 'col'):
+		print '<td>Statistical Analysis is not available for this display</td>'
+		print '</tr></table></div>'
+	else:
+	print """
+		<td>&nbsp;</td>
+	</tr><tr>
+		<td align="left">Meta-Search</td>
+		<td align="left">Bing</td>
+		<td align="left">Yahoo!</td>
+		<td align="left">DuckDuckGo</td>
+	</tr><tr>
+		<td align="center" colspan="4"><strong>Precision Scores:</strong></td>
+	</tr><tr>
+	"""
+	print '<td>'+meta_pr.group(2)+'</td>'
+	print '<td>'+bing_pr.group(2)+'</td>'
+	print '<td>'+yahoo_pr.group(2)+'</td>'
+	print '<td>'+ddgo_pr.group(2)+'</td>'
+	print """
+	</tr><tr>
+		<td align="center" colspan="4"><strong>Recall Scores:</strong></td>
+	</tr><tr>
+	"""
+	print '<td>'+meta_re.group(2)+'</td>'
+	print '<td>'+bing_re.group(2)+'</td>'
+	print '<td>'+yahoo_re.group(2)+'</td>'
+	print '<td>'+ddgo_re.group(2)+'</td>'
+	print """
+	</tr><tr>
+		<td align="center" colspan="4"><strong>Precision Scores:</strong></td>
+	</tr><tr>
+	"""
+	print '<td>'+meta_ap.group(2)+'</td>'
+	print '<td>'+bing_ap.group(2)+'</td>'
+	print '<td>'+yahoo_ap.group(2)+'</td>'
+	print '<td>'+ddgo_ap.group(2)+'</td>'
+	print '</tr></table></div>'

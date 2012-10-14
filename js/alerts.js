@@ -1,6 +1,6 @@
 /*
 Filename:	alerts.js
-Version:	5.4.1
+Version:	5.5
 
  */
 
@@ -39,16 +39,19 @@ function valid_search(){
 /* *** Hiding/toggle Advanced Settings *** */
 function toggle(){
 	var adv_opts = document.getElementById("advanced_options");
+	var stat_dis = document.getElementById("stat_display");
 	var state1 = document.getElementById("hide");
 	var state2 = document.getElementById("show");
 	if(state1.style.display == "block"){
 		state1.style.display = "none";
 		state2.style.display = "block";
 		adv_opts.innerHTML = "<strong>Advanced Settings &#9650;</strong>";
+		stat_dis.innerHTML = "<strong>Statistical Analysis &#9650;</strong>";
 	} else {
 		state1.style.display = "block";
 		state2.style.display = "none";
 		adv_opts.innerHTML = "<strong>Advanced Settings &#9660;</strong>";
+		stat_dis.innerHTML = "<strong>Statistical Analysis &#9650;</strong>";
 	}
 }
 /* *** END Hiding/toggle Advanced Settings *** */

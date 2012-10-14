@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		5.4.1
+## Version:		5.5
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -23,10 +23,9 @@ form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
-#stat = form.getvalue("stat")
-stat = 'on'
+stat = form.getvalue("stat")
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
-test = '1'									# this variable is use for testing only. all related if statements are for testing
+test = ''									# this variable is use for testing only. all related if statements are for testing
 
 ##### TESTING & ERROR CHECKING #####
 option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
@@ -160,22 +159,21 @@ if test:
 	print '**************************stats done**************************'
 ##### END Google Statistical comparison #####
 
-"""
 ##### HTML CODE #####
 ##### PAGE HEAD #####
-print ""
+print """
 <html><head>
 <link rel="stylesheet" href="../css/design.css" />
 <link rel="icon" href="../imgs/icons/meta.ico" type="image/x-icon" />
 <script type="text/javascript" src="../js/alerts.js"></script>
-""
+"""
 print '<title>'+original_search_entry+' : Meta-Search Results</title>'
 print '</head>'
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
 print '<body><div id="container">'
 ##### Re-SEARCH & ADVANCED SETTINGS #####
-print ""
+print """
 <div id="re-search">
 <form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
 <table align="center" border="0" width="490px"><tr>
@@ -184,9 +182,9 @@ print ""
 	</td>
 </tr><tr>
 <!-- SEARCH -->
-""
+"""
 print '	<td align="right" width="80%"><input type="text" name="search" id="search-box" value="'+original_search_entry+'" /></td>'
-print ""
+print """
 	<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
 </tr><tr>
 	<td colspan="2" align="right">
@@ -230,10 +228,11 @@ print ""
 			<input type="radio" name="stat" value="off" checked /> OFF
 		</td>
 	</tr>
-""
-<!-- END ADVANCED SETTINGS -->
-</table></form></div>
-""
+"""
+if stat == 'on':
+	stats_mod.stat_display(option, Precision_Scores, Recall_Scores, AP_scores)
+print '<!-- END ADVANCED SETTINGS -->'
+print '</table></form></div>'
 ##### END Re-SEARCH & ADVANCED SETTINGS #####
 ##### Search Results #####
 print '	<div id="results">'
@@ -247,7 +246,3 @@ print '	</div>'
 print '</div></body></html>'
 ##### END PAGE BODY #####
 ##### END HTML CODE #####
-"""
-print ' PRECSION:   ', Precision_Scores
-print ' RECALL:     ', Recall_Scores
-print ' AVERAGE PRECISION:   ', AP_scores
