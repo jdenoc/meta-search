@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		5.0
+## Version:		5.0.1
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -154,7 +154,7 @@ print """
 	<tr><td align="center" colspan="2"><strong>Advanced Settings</strong></td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-		<td>Aggrigated</td>
+		<td>Standard</td>
 		<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
 	</tr><tr>
 		<td>Columned</td>
@@ -181,9 +181,9 @@ print """
 print '	<div id="results">'
 print '		<h2><u>Search Results</u></h2>'
 print '		Your search<em><strong>', original_search_entry, '</strong></em>yielded these results:<br/><br/>'
-print '		<table border="0" id="scroll-area">'
+print '		<div id="scroll-area"><table border="0">'
 result_mod.result_option(option, link_dict, ddgo_dict, bing_dict, yahoo_dict, total_count)
-print '		</table>'
+print '		</table></div>'
 ##### END Search Results #####
 print '	</div>'
 print '</div></body></html>'

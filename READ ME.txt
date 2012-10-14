@@ -1,11 +1,10 @@
-V-5.0
+V-5.0.1
 
-Major Update!
+Minor problem with overflow:auto in chrome solved.
+Placed <div> tags around results table & gave it the 'results' id.
+id removed from table.
+SOLUTION SOURCE:	http://www.simonbattersby.com/blog/overflowauto-and-gaps-in-chrome-safari-and-opera/
 
-Display style & layout of index.html and search.cgi improved.
-Re-search ability feature added to search.cgi.
-Results separated into a blocked area of the page with an auto scroll feature.
-Advanced Settings not hidden.
-Display was done using file search_test.html.
+In 'Advanced Settings', 'Aggrigated' renamed to 'Standard'.
 
 ONLINE TESTED!
