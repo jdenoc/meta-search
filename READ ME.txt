@@ -1,8 +1,7 @@
-V-5.1
+V-5.1.1
 
-This version deals with the development of accessing google results. 
-File 'google_api(DEPRICATED).py' created.
-Results are VERY limited as method has been depricated.
+Newer google API created (google_api.py).
+Far more improved. Uses Googles Custom Websearch API.
 
-Source:	http://stackoverflow.com/questions/1657570/google-search-from-a-python-app
-Source:	http://groups.google.com/group/Google-AJAX-Search-API/browse_thread/thread/407a1bf2a2219117?pli=1
+ Source:	http://www.google.com/support/forum/p/customsearch/thread?tid=56c0bd92dda351b7&hl=en
+ Source:	http://code.google.com/apis/customsearch/v1/using_rest.html#query-params
