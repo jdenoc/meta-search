@@ -129,7 +129,7 @@ def stat_display(option, Precision_Scores, Recall_Scores, AP_scores):
 	<div id="show" style="display:none">
 		<table border="1"><tr>
 	"""
-	if (option != 'all') or (option != 'col'):
+	if (option != 'all') and (option != 'col'):
 		print '<td>Statistical Analysis is not available for this display</td>'
 		print '</tr></table></div>'
 	else:

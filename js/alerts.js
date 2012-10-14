@@ -45,13 +45,13 @@ function toggle(){
 	if(state1.style.display == "block"){
 		state1.style.display = "none";
 		state2.style.display = "block";
-		adv_opts.innerHTML = "<strong>Advanced Settings &#9650;</strong>";
 		stat_dis.innerHTML = "<strong>Statistical Analysis &#9650;</strong>";
+		adv_opts.innerHTML = "<strong>Advanced Settings &#9650;</strong>";
 	} else {
 		state1.style.display = "block";
 		state2.style.display = "none";
-		adv_opts.innerHTML = "<strong>Advanced Settings &#9660;</strong>";
 		stat_dis.innerHTML = "<strong>Statistical Analysis &#9650;</strong>";
+		adv_opts.innerHTML = "<strong>Advanced Settings &#9660;</strong>";
 	}
 }
 /* *** END Hiding/toggle Advanced Settings *** */

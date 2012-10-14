@@ -1,3 +1,6 @@
-V-5.6.1
+V-5.6.2
 
-test.py was recreated to test statistical comparisons with new Google API.
+Neccessary changes from 'test.py' file have been applied to 'search.cgi'.
+Search Statistics now available.
+
+ONLINE TESTED! (Minor Problems with alignment discovered)
