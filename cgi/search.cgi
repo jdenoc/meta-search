@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		4.2
+## Version:		4.2.1
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -22,12 +22,13 @@ search_entry = form.getvalue("search")		# stores the entry the user wishes to se
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
+test = ''		# this variable is use for testing only. all related if statements are for testing
+
 
 ##### TESTING & ERROR CHECKING #####
 option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
-	#search_entry = 'HeLlO wOrLd!'
-	search_entry = 'boobs'
+	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
 	option = 'all'
 if not total_count:		# if user doesn't specify a value, engine will produce up to results found
@@ -42,7 +43,9 @@ else:
 		total_count = 1
 		max_page_count = 1
 	else:
-		max_page_count = total_count/1
+		max_page_count = total_count/10
+if test:	
+	print '**************************end test**************************'
 ##### END TESTING & ERROR CHECKING#####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
@@ -54,6 +57,8 @@ if text_edit:
 else:
 # basic edit of search entry. REQUIRED!
 	search_entry = query_mod.tokeniser(search_entry)
+if test:	
+	print '**************************entry edited**************************'
 ##### END SEARCH ENTRY TEXT EDITOR #####
 
 # search engine search links
@@ -82,6 +87,8 @@ while page_count < max_page_count:
 		ddgo_dict = result_mod.link_to_dict(ddgo_dict, url_ddgo, max_page_count, page_count)
 		link_dict = result_mod.link_to_dict(link_dict, url_ddgo, max_page_count, page_count)
 		ddgo_link = engine_searcher.next_page_ddgo(ddgo_read)
+		if test:	
+			print '**************************ddgo done**************************', page_count
 	
 # Bing
 	if (option == 'all' or option == 'col' or option == 'bing') and bing_link:
@@ -91,6 +98,8 @@ while page_count < max_page_count:
 		bing_dict = result_mod.link_to_dict(bing_dict, url_bing, max_page_count, page_count)
 		link_dict = result_mod.link_to_dict(link_dict, url_bing, max_page_count, page_count)
 		bing_link = engine_searcher.next_page_bing(search_entry, page_count)
+		if test:	
+			print '**************************bing done**************************', page_count
 	
 # Yahoo
 	if (option == 'all' or option == 'col' or option == 'yahoo') and yahoo_link:
@@ -100,8 +109,12 @@ while page_count < max_page_count:
 		yahoo_dict = result_mod.link_to_dict(yahoo_dict, url_yahoo, max_page_count, page_count)
 		link_dict = result_mod.link_to_dict(link_dict, url_yahoo, max_page_count, page_count)
 		yahoo_link = engine_searcher.next_page_yahoo(yahoo_read)
+		if test:	
+			print '**************************yahoo done**************************', page_count
 	
 	page_count = page_count + 1		# increment page number
+if test:	
+	print '**************************links retrieved**************************'
 ##### END RETRIEVE LINKS FROM SEARCH ENGINES #####
 
 ##### HTML CODE #####

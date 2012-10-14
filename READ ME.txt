@@ -1,6 +1,7 @@
-V-4.2
+V-4.2.1
 
-search.cgi updated so that the engine will now display a maximum of 100 results.
-result_mod.py function show_results updated so that a user specified number of results up to 100 will be displayed.
+Minor problem in search.cgi file corrected.
+	Variable total_count was divided by 1 instead of 10.
+End of code-block text added & will only appear if a variable test is valid (not empty).
 
 ONLINE TESTED!
