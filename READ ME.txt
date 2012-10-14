@@ -1,8 +1,6 @@
-V-2.0
+V-2.1
 
-This version allows meta-search to go through 3 pages of
-DuckDuckGo, Yahoo & Bing, retrieving results
-javascript function in index.html stops users from sending NULL values to cgi script
-
+code tidied/updated from Version 2.0
+Now retrieves results from 10 pages from each engine.
 
 ONLINE TESTED!
