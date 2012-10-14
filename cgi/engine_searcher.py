@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		6.0
+## Version:		6.0.1
 ##
 import urllib
 import re

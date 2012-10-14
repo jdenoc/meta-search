@@ -1,8 +1,8 @@
-stats_mod.py file has been updated to include a function to display the:
-	* Precision scores
-	* Recall Scores
-	* Average Precision scores
-on the search results page, if stats are on, then the statistical analysis link will appear.
+V-6.0.1
 
-Clicking on it will reveal links to see each of the score for each of the search engines.
-Clicking on each of these will reveal the scores.
+Link score weighting formula in result_mod.py file updated/improved.
+formula now:
+	score = (len(link_set)-link_num)*(weight-weight_limiter)
+
+See before.jpg for results before link score weighting formula upgrade.
+See after.jpg  for results after link score weighting formula upgrade.

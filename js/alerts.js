@@ -1,6 +1,6 @@
 /*
 Filename:	alerts.js
-Version:	6.0
+Version:	6.0.1
 
  */
 
@@ -37,6 +37,7 @@ function valid_search(){
 /* *** END PAGE OPEN CONFIRMATION *** */
 
 /* *** SHOW/HIDE items *** */
+// SOURCE:		http://girlswhogeek.com/tutorials/2007/show-and-hide-elements-with-javascript
 function showStuff(id) {
 	document.getElementById(id).style.display = 'block';
 }

@@ -1,23 +1,25 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		6.0
+## Version:		6.0.1
 ##
 import urllib
 import re
 
 def link_to_dict(dict, link_list, weight, weight_limiter):
 # adds not already present links to a dictionary of links
+	link_num = 	1
 	for link_set in link_list:
 		link = link_set[0]
 		if link_set[0] not in dict:
-			score = 1*(weight-weight_limiter)
+			score = (len(link_set)-link_num)*(weight-weight_limiter)
 			dict[link] = (score, link_set[1])
 		else:
 			items = dict[link]
 			score = items[0]
 			score = score + 1
 			dict[link] = (score, items[1])
+		link_num = link_num + 1
 	
 	return dict
 
