@@ -1,10 +1,7 @@
-V-5.0.1
+V-5.0.2
 
-Minor problem with overflow:auto in chrome solved.
-Placed <div> tags around results table & gave it the 'results' id.
-id removed from table.
-SOLUTION SOURCE:	http://www.simonbattersby.com/blog/overflowauto-and-gaps-in-chrome-safari-and-opera/
-
-In 'Advanced Settings', 'Aggrigated' renamed to 'Standard'.
+Corrected minor code problem in engine_searcher.py file.
+Added feature to show_links function in results_mod.py, where text is displayed if no results are found. 
+Added feature to show_links function in results_mod.py,  where clicking on a link opens a new tab/window. 
 
 ONLINE TESTED!

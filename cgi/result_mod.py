@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		5.0.1
+## Version:		5.0.2
 ##
 import urllib
 import re
@@ -35,13 +35,19 @@ def show_links(dict, total_count):
 		link_dict[url] = score
 		title_dict[url] = title
 	
-	links = sorted(link_dict, key=link_dict.get, reverse=True)	# Code Source: http://stackoverflow.com/questions/3417760/how-to-sort-a-python-dict-by-value
+	links = sorted(link_dict, key=link_dict.get, reverse=True)		# Code Source: http://stackoverflow.com/questions/3417760/how-to-sort-a-python-dict-by-value
 	i = 1
-	for url in links:
-		if i <= total_count:
-			print '<tr><td>', i, '</td>', '<td><a href="'+url+'">'+title_dict[url]+'</a></td></tr>'
-			print '<tr><td>&nbsp;</td><td><span class="blue_link">'+url+'</span></td></tr>'
-		i = i+1
+	
+	if links:
+		for url in links:
+			if i <= total_count:
+				print '<tr><td>', i, '</td>', '<td><a href="'+url+'" target="_blank">'+title_dict[url]+'</a></td></tr>'
+				print '<tr><td>&nbsp;</td><td><span class="blue_link">'+url+'</span></td></tr>'
+			i = i+1
+	else:
+		print '<tr><td>&nbsp;</td></tr>'
+		print '<tr><td colspan="2" align="center"><strong>NO RESULTS FOUND!</strong></td></tr>'
+		print '<tr><td>&nbsp;</td></tr>'
 		
 def column_results(ddgo_dict, bing_dict, yahoo_dict, total_count):
 	print """

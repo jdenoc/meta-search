@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		5.0.1
+## Version:		5.0.2
 ##
 import cgi
 print "Content-type: text/html\n"

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		5.0.1
+## Version:		5.0.2
 ##
 import urllib
 import re
@@ -71,7 +71,9 @@ def next_page_bing(search, page_num):
 def next_page_yahoo(code):
 # searches HTML code of Yahoo site for a link to next page of results
 	url_match_next = re.search(r'(<a id="pg-next" href=")('+link_criterion+')(">Next &gt;</a>)', code)
-	return url_match_next.group(2)
+	if url_match_next:
+		next_page = url_match_next.group(2)
+		return next_page
 # END next_page_yahoo
 
 ###################  END of individual search engine link finders  ###################
