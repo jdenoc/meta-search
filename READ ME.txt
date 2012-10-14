@@ -1,7 +1,6 @@
-V-4.1
+V-4.2
 
-File alerts.js created.
-javascript has been removed from index.html and search.cgi files, and has been placed in alerts.js.
-javascript function too_many added to make sure an appropriate number of results is entered.
+search.cgi updated so that the engine will now display a maximum of 100 results.
+result_mod.py function show_results updated so that a user specified number of results up to 100 will be displayed.
 
 ONLINE TESTED!

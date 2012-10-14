@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		4.1
+## Version:		4.2
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -21,22 +21,28 @@ form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
-max_page_count = form.getvalue("max")		# stores a value for the amount of pages that must be processde from the search engines
+total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
 
 ##### TESTING & ERROR CHECKING #####
 option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
-	search_entry = 'HeLlO wOrLd!'
+	#search_entry = 'HeLlO wOrLd!'
+	search_entry = 'boobs'
 if option not in option_list:
 	option = 'all'
-if not max_page_count:
+if not total_count:		# if user doesn't specify a value, engine will produce up to results found
+	total_count = 100
 	max_page_count = 1
 else:
-	max_page_count = int(max_page_count)	# converts a numberical value from a string to an integer
-	if max_page_count > 7:
-		max_page_count = 7
-	elif max_page_count <= 0:
+	total_count = int(total_count)	# converts a numberical value from a string to an integer
+	if total_count > 100:
+		total_count = 100
+		max_page_count = 10
+	elif total_count <= 0:
+		total_count = 1
 		max_page_count = 1
+	else:
+		max_page_count = total_count/1
 ##### END TESTING & ERROR CHECKING#####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
@@ -69,7 +75,7 @@ page_count = 0
 while page_count < max_page_count:
 	
 # DuckDuckGo
-	if option == 'all' or option == 'col' or option == 'ddgo':
+	if (option == 'all' or option == 'col' or option == 'ddgo') and ddgo_link:
 	# if statement done to cut down on unnecessary processing
 		ddgo_read = engine_searcher.open_doc(ddgo_link)
 		url_ddgo = engine_searcher.link_finder_ddgo(ddgo_read)
@@ -78,7 +84,7 @@ while page_count < max_page_count:
 		ddgo_link = engine_searcher.next_page_ddgo(ddgo_read)
 	
 # Bing
-	if option == 'all' or option == 'col' or option == 'bing':
+	if (option == 'all' or option == 'col' or option == 'bing') and bing_link:
 	# if statement done to cut down on unnecessary processing
 		bing_read = engine_searcher.open_doc(bing_link)
 		url_bing = engine_searcher.link_finder_bing(bing_read)
@@ -87,7 +93,7 @@ while page_count < max_page_count:
 		bing_link = engine_searcher.next_page_bing(search_entry, page_count)
 	
 # Yahoo
-	if option == 'all' or option == 'col' or option == 'yahoo':
+	if (option == 'all' or option == 'col' or option == 'yahoo') and yahoo_link:
 	# if statement done to cut down on unnecessary processing
 		yahoo_read = engine_searcher.open_doc(yahoo_link)
 		url_yahoo = engine_searcher.link_finder_yahoo(yahoo_read)
@@ -117,7 +123,7 @@ print '	<div id="results">'
 print '		<h2><u>Search Results</u></h2>'
 print '		Your search<em><strong>', original_search_entry, '</strong></em>yielded these results:<br/>'
 print '		<table border="0">'
-result_mod.result_option(option, link_dict, ddgo_dict, bing_dict, yahoo_dict)
+result_mod.result_option(option, link_dict, ddgo_dict, bing_dict, yahoo_dict, total_count)
 print '		</table>'
 ##### END Search Results #####
 print '	</div>'
