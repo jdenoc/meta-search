@@ -1,7 +1,6 @@
-V-5.1.1
+V-5.2
 
-Newer google API created (google_api.py).
-Far more improved. Uses Googles Custom Websearch API.
+File stats_mod.py created
+Functions in google_api.py integrated into stats_mod.py.
+google_api.py deleted.
 
- Source:	http://www.google.com/support/forum/p/customsearch/thread?tid=56c0bd92dda351b7&hl=en
- Source:	http://code.google.com/apis/customsearch/v1/using_rest.html#query-params

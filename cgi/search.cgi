@@ -10,20 +10,23 @@ print "Content-type: text/html\n"
 engine_searcher = '.\\engine_searcher.py'
 query_mod = '.\\query_mod.py'
 result_mod = '.\\result_mod.py'
+stats_mod = '.\\stats_mod.py'
 
 # import NECCESSARY functions from files
 import engine_searcher	# allow the meta-search engine to search other search engines.
 import query_mod		# edit the search enquiry so the meta-search engine may get better results.
 import result_mod		# functions to add links to link_dict & displays them
+import stats_mod		# used to find statistical comparisons between this engine & google
 
 # retrieves information sent from home/front page
 form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
+#stat = form.getvalue("stat")
+stat = 'on'
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
-test = ''									# this variable is use for testing only. all related if statements are for testing
-
+test = '1'									# this variable is use for testing only. all related if statements are for testing
 
 ##### TESTING & ERROR CHECKING #####
 option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
@@ -31,8 +34,8 @@ if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
 	option = 'all'
-if not total_count:		# if user doesn't specify a value, engine will produce up to results found
-	total_count = 100
+if not total_count:		# if user doesn't specify a value, engine will produce all results found
+	total_count = 30
 	max_page_count = 1
 else:
 	total_count = int(total_count)	# converts a numberical value from a string to an integer
@@ -40,12 +43,12 @@ else:
 		total_count = 100
 		max_page_count = 10
 	elif total_count <= 0:
-		total_count = 1
+		total_count = 30
 		max_page_count = 1
 	else:
 		max_page_count = total_count/10
 if test:	
-	print '**************************end test**************************'
+	print '**************************end error check**************************'
 ##### END TESTING & ERROR CHECKING#####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
@@ -62,7 +65,6 @@ if test:
 ##### END SEARCH ENTRY TEXT EDITOR #####
 
 # search engine search links
-google_link = "http://www.google.ie/#hl=en&q=" + search_entry
 ddgo_link = "http://duckduckgo.com/html/?q=" + search_entry
 bing_link = "http://www.bing.com/search?q=" + search_entry
 yahoo_link = "http://search.yahoo.com/search?p=" + search_entry
@@ -73,6 +75,7 @@ link_dict = {}		# all links gathered from search engines
 ddgo_dict = {}		# all links gathered from DuckDuckGo
 bing_dict = {}		# all links gathered from Bing
 yahoo_dict = {}		# all links gathered from Yahoo
+google_dict = {}	# all links gathered from google
 
 ##### RETRIEVE LINKS FROM SEARCH ENGINES #####
 page_count = 0
@@ -117,21 +120,59 @@ if test:
 	print '**************************links retrieved**************************'
 ##### END RETRIEVE LINKS FROM SEARCH ENGINES #####
 
+##### Google Statistical comparison #####
+if stat == 'on' and (option == 'all' or option == 'col'):
+# Google results
+	google_dict = stats_mod.google_api(search_entry, total_count)
+	if test:	
+		print '**************************google done**************************'
+
+# Precision Scores
+	Prec_meta = stats_mod.Precision(link_dict.keys(), google_dict.keys())
+	Prec_bing = stats_mod.Precision(bing_dict.keys(), ddgo_dict.keys())
+	Prec_yahoo = stats_mod.Precision(yahoo_dict.keys(), google_dict.keys())
+	Prec_ddgo = stats_mod.Precision(ddgo_dict.keys(), google_dict.keys())
+	Precision_Scores = ['meta:'+str(Prec_meta), 'bing:'+str(Prec_bing), 'yahoo:'+str(Prec_yahoo), 'duckDuckGo:'+str(Prec_ddgo)]
+	if test:
+		print '**************************Precision done**************************'
+	
+# Recall Scores
+	rec_meta = stats_mod.Recall(link_dict.keys(), google_dict.keys())
+	rec_bing = stats_mod.Recall(bing_dict.keys(), google_dict.keys())
+	rec_yahoo = stats_mod.Recall(yahoo_dict.keys(), google_dict.keys())
+	rec_ddgo = stats_mod.Recall(ddgo_dict.keys(), google_dict.keys())
+	Recall_Scores = ['meta:'+str(rec_meta), 'bing:'+str(rec_bing), 'yahoo:'+str(rec_yahoo), 'duckduckgo:'+str(rec_ddgo)]
+	if test:
+		print '**************************Recall done**************************'
+	
+# Average Precision Score
+	AP_score_ddgo = stats_mod.Average_Precision(ddgo_dict, google_dict)
+	AP_score_bing = stats_mod.Average_Precision(bing_dict, google_dict)
+	AP_score_meta = stats_mod.Average_Precision(link_dict, google_dict)
+	AP_score_yahoo = stats_mod.Average_Precision(yahoo_dict, google_dict)
+	AP_scores = ['meta:'+str(AP_score_meta), 'bing:'+str(AP_score_bing), 'yahoo:'+str(AP_score_yahoo), 'duckduckgo:'+str(AP_score_ddgo)]
+	if test:	
+		print '**************************Average Precision done**************************'
+if test:	
+	print '**************************stats done**************************'
+##### END Google Statistical comparison #####
+
+"""
 ##### HTML CODE #####
 ##### PAGE HEAD #####
-print """
+print ""
 <html><head>
 <link rel="stylesheet" href="../css/design.css" />
 <link rel="icon" href="../imgs/icons/meta.ico" type="image/x-icon" />
 <script type="text/javascript" src="../js/alerts.js"></script>
-"""
+""
 print '<title>'+original_search_entry+' : Meta-Search Results</title>'
 print '</head>'
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
 print '<body><div id="container">'
 ##### Re-SEARCH & ADVANCED SETTINGS #####
-print """
+print ""
 <div id="re-search">
 <form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
 <table align="center" border="0" width="490px"><tr>
@@ -140,9 +181,9 @@ print """
 	</td>
 </tr><tr>
 <!-- SEARCH -->
-"""
+""
 print '	<td align="right" width="80%"><input type="text" name="search" id="search-box" value="'+original_search_entry+'" /></td>'
-print """
+print ""
 	<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
 </tr><tr>
 	<td colspan="2" align="right">
@@ -153,31 +194,42 @@ print """
 </tr></table>
 </div><br/>
 <div id="adv_sys"><table border="0">
+<!-- ADVANCED SETTINGS -->
 	<tr><td align="center" colspan="2"><strong>Advanced Settings</strong></td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-		<td>Standard</td>
+		<td>Standard: </td>
 		<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
 	</tr><tr>
-		<td>Columned</td>
+		<td>Columned: </td>
 		<td align="center"><input type="radio" name="adv_dis" value="col" /></td>
 	</tr><tr>
-		<td>Bing Results Only</td>
+		<td>Bing Results Only: </td>
 		<td align="center"><input type="radio" name="adv_dis" value="bing" /></td>
 	</tr><tr>
-		<td>DuckDuckGo Results Only</td>
+		<td>DuckDuckGo Results Only: </td>
 		<td align="center"><input type="radio" name="adv_dis" value="ddgo" /></td>
 	</tr><tr>
-		<td>Yahoo! Results Only</td>
+		<td>Yahoo! Results Only: </td>
 		<td align="center"><input type="radio" name="adv_dis" value="yahoo" /></td>
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td align="center"><strong>Maximum Results</strong></td>
+		<td align="center"><strong>Maximum Results: </strong></td>
+	<tr></tr>
 		<td align="left"><input type="text" name="total" /></td>
+	</tr><tr>
+		<td>&nbsp;</td>
+	</tr><tr>
+		<td align="center">Stats:</td>
+		<td>
+			<input type="radio" name="stat" value="on" /> ON<br/>
+			<input type="radio" name="stat" value="off" checked /> OFF
+		</td>
 	</tr>
+<!-- END ADVANCED SETTINGS -->
 </table></form></div>
-"""
+""
 ##### END Re-SEARCH & ADVANCED SETTINGS #####
 ##### Search Results #####
 print '	<div id="results">'
@@ -191,3 +243,7 @@ print '	</div>'
 print '</div></body></html>'
 ##### END PAGE BODY #####
 ##### END HTML CODE #####
+"""
+print ' PRECSION:   ', Precision_Scores
+print ' RECALL:     ', Recall_Scores
+print ' AVERAGE PRECISION:   ', AP_scores
