@@ -1,0 +1,72 @@
+/* results.css */
+body{
+	background:url(../imgs/mainbg.jpg) repeat-x #000;
+	color:#FFF;
+}
+
+#container{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:85px;
+	height:auto;
+	width: 900px;
+}
+
+#search-bar{
+	float: left;
+	width:900px;
+	height: 150px;
+}
+
+#options{
+	float: left;
+	width: 150px;
+	height: auto;
+	background-color: #FFF;
+}
+
+#search-box{
+	width:350px;
+	height:25px;
+	padding: 10px;
+	border: 0px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:16px;
+}
+
+#search-button{
+	border: 0px solid black ;
+	height: 25px;
+	width: 65px;
+	border-radius: 10px ;
+	-moz-border-radius: 10px ;
+	-webkit-border-radius: 10px ;
+	font-family:"Comic Sans MS", cursive;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+a:link,
+a:visited{
+	color:#CCC;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:blink underline;
+	color:#C90;
+}
+
+.testing{
+	left:20px;
+	text-align: right;
+}
+
+.blue_link{
+	padding:20px, 0px, 0px, 0px;
+	color:#00F;
+	font-size:12px;
+}

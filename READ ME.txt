@@ -1,0 +1,13 @@
+V-1.0
+
+Working version of meta-search engine.
+extracts 1st page of results from:
+				* Bing
+				* Yahoo!
+				* DuckDuckGo
+Displays a maximum of 30 results.
+Front page search only.
+javascript functions in index.html that says goodbye to user when clicking on any of the referenced search engine links
+
+
+ONLINE TESTED!

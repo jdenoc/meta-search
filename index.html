@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script type="text/javascript">
+<!-- function that will run anytime user leaves page via a link on front page -->
+	function goodbye(){
+		alert("Sorry to see you leave!");
+	}
+</script>
+
+<!-- PAGE OPEN CONFIRMATION --
+<script type="text/javascript">
+	var disclaim = "Disclaimer:\n"+
+			"This page has been developed as part of a MSc. Computer Science course work & therefore academic in basis.\n"+
+			"All rights & trademarks are reserved by those that may appear in this site.\n"+
+			"Please click on OK to continue loading the Meta-Search Engine, or CANCEL to be directed to the DuckDuckGo site.";
+
+	var answer = confirm(disclaim);
+	if (!answer){
+		goodbye();
+		window.location="http://www.duckduckgo.com/";
+	}
+</script>
+<!-- END PAGE OPEN CONFIRMATION -->
+
+<title>Meta-Search</title>
+<link rel="stylesheet" href="css/design.css" />
+<link rel="icon" href="imgs/icons/meta.ico" type="image/x-icon" />
+</head>
+
+<body><div id="container">
+<table border="0" width="100%"><form action="cgi/search.cgi" method="get" id="search-form">
+	<tr>
+    	<td colspan="2">
+        	<h1>Meta-Search Engine</h1>
+        </td>
+    </tr><tr><!-- SEARCH -->
+    	<td align="right"><input type="text" name="search" id="search-box"/></td>
+        <td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" /></td>
+	</tr><tr>
+    	<td colspan="2" align="right">
+			Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" checked />On&nbsp;&nbsp;
+			<input type="radio" name="process" value="" />Off
+		</td>
+	</tr><tr><!-- END SEARCH -->
+		<td>&nbsp;</td>
+	</tr><tr class="testing"> <!-- SEARCH ENGINE REFERENCES -->
+    	<td colspan="2">Powered by:&nbsp;&nbsp;
+			<img src="imgs/icons/ddgo.ico" alt="DuckDuckGo"/>
+			<a href="http://duckduckgo.com/" class="engines" onclick="goodbye()">DuckDuckGo</a>&nbsp;&nbsp;
+			<img src="imgs/icons/yahoo.ico" alt="Yahoo!"/>
+			<a href="http://search.yahoo.com/" class="engines" onclick="goodbye()">Yahoo!</a>&nbsp;&nbsp;
+			<img src="imgs/icons/bing.ico" alt="Bing"/>
+			<a href="http://www.bing.com/" class="engines" onclick="goodbye()">Bing</a>&nbsp;
+        </td>
+    </tr><tr class="testing">
+    	<td colspan="2">
+        	Tested against:&nbsp;&nbsp;
+            <img src="imgs/icons/google.ico" alt="Google"/>
+            <a href="http://www.google.ie/" class="engines" onclick="goodbye()">Google</a>&nbsp;
+		</td><!-- END SEARCH ENGINE REFERENCES -->
+	</tr>
+</form></table>
+</div></body>
+</html>
