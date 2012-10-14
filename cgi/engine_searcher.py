@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		3.4
+## Version:		4.0
 ##
 import urllib
 import re
@@ -20,8 +20,6 @@ def link_trimmer(site_links, i, j):# NEEDS TO BE REVISITED!
 	
 	for link in site_links:
 		url = link[i]
-		print link
-		print
 		title = link[j]
 		trimmed_links.append((url, title))		# appends a tuple containing the site address & title to a list
 
@@ -40,14 +38,14 @@ def link_finder_ddgo(code):
 
 def link_finder_bing(code):	# NEEDS TO BE REVISITED!
 # searches through Bing site for usable url links
-	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)
+	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
 	bing_links = link_trimmer(url_match_bing, 1, 3)
 	return bing_links
 # END link_finder_bing
 	
 def link_finder_yahoo(code):# NEEDS TO BE REVISITED!
 # searches through Yahoo site for usable links
-	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-'+link_criterion+'>)(.+?)(</a>)', code)	# .+?		This indicates 1 or more of any character, but in a non-greedy form
+	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-.+?>)(.+?)(</a>)', code)
 	yahoo_links = link_trimmer(url_match_yahoo, 1, 3)
 	return yahoo_links
 # END link_finder_yahoo

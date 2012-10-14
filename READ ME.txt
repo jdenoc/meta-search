@@ -1,4 +1,7 @@
-V-3.4
+V-4.0
 
-Bing search updated
-link_finder_bing function updated to extract title from search engine as well as link.
+This version of the code is a reworked version of 3.4
+Code has been tidied
+
+
+ONLINE TESTED!

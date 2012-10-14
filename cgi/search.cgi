@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		3.4
+## Version:		4.0
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -28,11 +28,15 @@ option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
-	option = 'bing'
-if (not max_page_count) or (max_page_count > 7):
+	option = 'all'
+if not max_page_count:
 	max_page_count = 1
 else:
 	max_page_count = int(max_page_count)	# converts a numberical value from a string to an integer
+	if max_page_count > 7:
+		max_page_count = 7
+	elif max_page_count <= 0:
+		max_page_count = 1
 ##### END TESTING & ERROR CHECKING#####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
@@ -47,16 +51,10 @@ else:
 ##### END SEARCH ENTRY TEXT EDITOR #####
 
 # search engine search links
-"""
 google_link = "http://www.google.ie/#hl=en&q=" + search_entry
 ddgo_link = "http://duckduckgo.com/html/?q=" + search_entry
 bing_link = "http://www.bing.com/search?q=" + search_entry
 yahoo_link = "http://search.yahoo.com/search?p=" + search_entry
-"""
-ddgo_link = '..\\VIP\\yahoo.htm'
-bing_link = '..\\VIP\\Bing.htm'
-yahoo_link = '..\\VIP\\Yahoo.htm'
-
 
 
 # external dictionary to hold:
@@ -72,7 +70,7 @@ while page_count < max_page_count:
 	
 # DuckDuckGo
 	if option == 'all' or option == 'col' or option == 'ddgo':
-	# if statement done in a effort to cut down on processing time
+	# if statement done to cut down on unnecessary processing
 		ddgo_read = engine_searcher.open_doc(ddgo_link)
 		url_ddgo = engine_searcher.link_finder_ddgo(ddgo_read)
 		ddgo_dict = result_mod.link_to_dict(ddgo_dict, url_ddgo, max_page_count, page_count)
@@ -81,7 +79,7 @@ while page_count < max_page_count:
 	
 # Bing
 	if option == 'all' or option == 'col' or option == 'bing':
-	# if statement done in a effort to cut down on processing time
+	# if statement done to cut down on unnecessary processing
 		bing_read = engine_searcher.open_doc(bing_link)
 		url_bing = engine_searcher.link_finder_bing(bing_read)
 		bing_dict = result_mod.link_to_dict(bing_dict, url_bing, max_page_count, page_count)
@@ -90,7 +88,7 @@ while page_count < max_page_count:
 	
 # Yahoo
 	if option == 'all' or option == 'col' or option == 'yahoo':
-	# if statement done in a effort to cut down on processing time
+	# if statement done to cut down on unnecessary processing
 		yahoo_read = engine_searcher.open_doc(yahoo_link)
 		url_yahoo = engine_searcher.link_finder_yahoo(yahoo_read)
 		yahoo_dict = result_mod.link_to_dict(yahoo_dict, url_yahoo, max_page_count, page_count)

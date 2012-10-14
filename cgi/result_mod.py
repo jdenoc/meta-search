@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		3.4
+## Version:		4.0
 ##
 import urllib
 import re
@@ -20,47 +20,9 @@ def link_to_dict(dict, link_list, weight, weight_limiter):
 			dict[link] = (score, items[1])
 	
 	return dict
-"""
-def link_checker(link):
-# checks to make sure the link provided is valid
-	try:
-		site = urllib.urlopen(link)		# opens url to search through
-		read_file = site.read()			# reads url (file) text
-		site.close()					# done with url (file), so close it
 
-		href = link+'"><strong>'+site_title(read_file)+'</strong>'
-	
-	except:
-		href = link+'" onclick="return dead_link();"><strong> 404 ERROR </strong>'
-				
-	return href
-	
-def site_title(read_file):
-# searches a site for a title or heading
-	title_match1 = re.search(r'(<title.*>)(.+)(</title>)', read_file, re.DOTALL)
-	title_match2 = re.search(r'(<TITLE.*>)(.+)(</TITLE>)', read_file, re.DOTALL)
-	h1_match1 = re.search(r'(<h1.*>)(.+)(/h1>)', read_file)
-	h1_match2 = re.search(r'(<H1.*>)(.+)(/H1>)', read_file)
-		
-	if title_match1:
-		heading = title_match1.group(2)
-	elif h1_match1:
-		heading = h1_match1.group(2)
-	elif title_match2:
-		heading = title_match2.group(2)
-	elif h1_match2:
-		heading = h1_match2.group(2)
-	else:
-		heading = link
-		
-	if len(heading) > 30:
-		heading = heading[:30]
-		heading = heading + ' . . .'
-		
-	return heading
-"""	
 def show_links(dict):
-# splits dictionary into two separate dictionarys.
+# splits dictionary into two separate dictionarys. One for links & rank, & the other for links & title
 # sorts links by highest score/weight & then prints them in that order
 # prints a title that is related to that link
 	link_dict = {}
@@ -77,7 +39,7 @@ def show_links(dict):
 	i = 1
 	for url in links:
 		print '<tr><td>', i, '</td>', '<td><a href="'+url+'">'+title_dict[url]+'</a></td></tr>'
-		#print '<tr><td>&nbsp;</td><td><span class="blue_link">'+url+'</span></td></tr>'
+		print '<tr><td>&nbsp;</td><td><span class="blue_link">'+url+'</span></td></tr>'
 		i = i+1
 		
 def column_results(ddgo_dict, bing_dict, yahoo_dict):
