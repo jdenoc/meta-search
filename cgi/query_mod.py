@@ -19,9 +19,10 @@ def tokeniser(search_entry):
 def search_entry_editor(search_entry):
 # Edit search entry to try & improve search performance
 	
-	fixed = []	# new list created to store edited search words
+	fixed = []				# new list created to store edited search words
 	fix = search_entry		# allows for easier code writing/editing
 	fix = fix.lower()		# convert entry to lowercase
+	fix = fix.split('+')
 
 	for word in fix:
 	# searches through each word & removes unwanted characters

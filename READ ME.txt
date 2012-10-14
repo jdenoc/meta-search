@@ -1,21 +1,13 @@
-V-1.1
+V-1.2
 
-Revised version of code from version 1.0
-Python Code is now modularised into 4 files, instead of 2
+This version allows meta-search to go through 10 pages of DuckDuckGo retrieving results
 
-search_class.py is deleted.
-result_mod.py created.
-	Function link_to_dict moved here.
-	Function site_title moved here.
-	Function show_links moved here.
-engine_searcher.py created.
-	Function open_doc moved here.
-	Function link_trimmer moved here.
-	Function link_finder_ddgo moved here.
-	Function link_finder_bing moved here.
-	Function link_finder_yahoo moved here.
-	Function next_page added. Searches HTML code for a link to next page of results. Not yet inplemented.
-query_mod.py created.
-	Function search_entry_editor moved here.
-	Function tokeniser added. Basic search entry edit. Tokenises the words in search entry by replacing white space with '+' .
+Function next_page_ddgo added to engine_searcher.py.
+	Searches HTML code of DuckDuckGo site for a link to next page of results.
+Function next_page_bing added to engine_searcher.py.
+	Searches HTML code of Bing site for a link to next page of results.
+	Not active.
+Function next_page_yahoo added to engine_searcher.py.
+	Searches HTML code of Yahoo! site for a link to next page of results.
+	Not active.
 search.cgi updated to process this.

@@ -44,13 +44,14 @@ link_dict = {}		# external dictionary to hold all links gathered from search eng
 
 
 # DuckDuckGo
-#page_count = 0
-#while page_count < 10:
-ddgo_read = engine_searcher.open_doc(ddgo_link)
-url_ddgo = engine_searcher.link_finder_ddgo(ddgo_read)
-link_dict = result_mod.link_to_dict(link_dict, url_ddgo)
-	#next_page
-	#page_count = page_count + 1
+page_count = 0
+while page_count < 10:
+	ddgo_read = engine_searcher.open_doc(ddgo_link)
+	url_ddgo = engine_searcher.link_finder_ddgo(ddgo_read)
+	link_dict = result_mod.link_to_dict(link_dict, url_ddgo)
+	next_page = engine_searcher.next_page_ddgo(ddgo_read)
+	ddgo_link = "http://duckduckgo.com/html/?q=" + next_page
+	page_count = page_count + 1
 
 # Bing
 bing_read = engine_searcher.open_doc(bing_link)
