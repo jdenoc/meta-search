@@ -1,13 +1,7 @@
-V-1.2
+V-1.3
 
-This version allows meta-search to go through 10 pages of DuckDuckGo retrieving results
+This version allows meta-search to go through 10 pages of Yahoo & DuckDuckGo, retrieving results
 
-Function next_page_ddgo added to engine_searcher.py.
-	Searches HTML code of DuckDuckGo site for a link to next page of results.
-Function next_page_bing added to engine_searcher.py.
-	Searches HTML code of Bing site for a link to next page of results.
-	Not active.
-Function next_page_yahoo added to engine_searcher.py.
-	Searches HTML code of Yahoo! site for a link to next page of results.
-	Not active.
 search.cgi updated to process this.
+
+ONLINE TESTED!
