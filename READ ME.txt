@@ -1,7 +1,7 @@
-V-4.0
+V-4.1
 
-This version of the code is a reworked version of 3.4
-Code has been tidied
-
+File alerts.js created.
+javascript has been removed from index.html and search.cgi files, and has been placed in alerts.js.
+javascript function too_many added to make sure an appropriate number of results is entered.
 
 ONLINE TESTED!

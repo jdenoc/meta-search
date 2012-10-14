@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		4.0
+## Version:		4.1
 ##
 import urllib
 import re

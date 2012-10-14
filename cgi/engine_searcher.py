@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		4.0
+## Version:		4.1
 ##
 import urllib
 import re
@@ -39,23 +39,26 @@ def link_finder_ddgo(code):
 def link_finder_bing(code):	# NEEDS TO BE REVISITED!
 # searches through Bing site for usable url links
 	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
-	bing_links = link_trimmer(url_match_bing, 1, 3)
-	return bing_links
+	if url_match_bing:
+		bing_links = link_trimmer(url_match_bing, 1, 3)
+		return bing_links
 # END link_finder_bing
 	
 def link_finder_yahoo(code):# NEEDS TO BE REVISITED!
 # searches through Yahoo site for usable links
 	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-.+?>)(.+?)(</a>)', code)
-	yahoo_links = link_trimmer(url_match_yahoo, 1, 3)
-	return yahoo_links
+	if url_match_yahoo:
+		yahoo_links = link_trimmer(url_match_yahoo, 1, 3)
+		return yahoo_links
 # END link_finder_yahoo
 
 
 def next_page_ddgo(code):
 # searches HTML code of DuckDuckGo site for a link to next page of results
 	url_match_next = re.search(r'(<!-- <a rel="next" href=".html.+q=)('+link_criterion+')(">Next Page &gt;</a> //-->)', code)
-	next_page = 'http://duckduckgo.com/html/?q=' + url_match_next.group(2)
-	return next_page
+	if url_match_next:
+		next_page = 'http://duckduckgo.com/html/?q=' + url_match_next.group(2)
+		return next_page
 # END next_page_ddgo
 
 def next_page_bing(search, page_num):

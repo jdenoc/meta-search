@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		4.0
+## Version:		4.1
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -104,18 +104,7 @@ print """
 <html><head>
 <link rel="stylesheet" href="../css/results.css" />
 <link rel="icon" href="../imgs/icons/meta.ico" type="image/x-icon" />
-<script type="text/javascript">
-<!-- This script prompts a user to confirm that they wish to continue to a webpage that they have been warned that the webpage may bot exist -->
-	var link_warn = "&#07;WARNING!!!\\nAn error occured when validating the page you are about to access. It may no longer be active.\\nClick OK to continue anyway or Cancel to remain.";
-	function dead_link(){
-		var answer = confirm(link_warn);
-		if (answer){
-			alert("You were warned!");
-		}else{
-			return false;
-		}
-	}
-</script>
+<script type="text/javascript" src="js/alerts.js"></script>
 """
 print '<title>'+original_search_entry+' : Meta-Search Results</title>'
 print '</head>'

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	query_mod.py
-## Version:		4.0
+## Version:		4.1
 ##
 import urllib
 import re
@@ -17,15 +17,14 @@ def tokeniser(search_entry):
 	return search_entry
 # END tokeniser
 
-def search_entry_editor(search_entry):
+def search_entry_editor(entry):
 # Edit search entry to try & improve search performance
 	
-	fixed = []				# new list created to store edited search words
-	fix = search_entry		# allows for easier code writing/editing
-	fix = fix.lower()		# convert entry to lowercase
-	fix = fix.split()		# splits all words
+	fixed_entry = []			# new list created to store edited search words
+	entry = entry.lower()		# convert entry to lowercase
+	entry = entry.split()		# splits all words
 
-	for word in fix:
+	for word in entry:
 	# searches through each word & removes unwanted characters
 		i = 0
 		while i < len(word):
@@ -34,10 +33,12 @@ def search_entry_editor(search_entry):
 				word = word.replace(remove, '')
 			else:
 				i = i + 1
-		fixed.append(word)
+		fixed_entry.append(word)
 
-	fixed = '+'.join(fixed)		# rejoins words together with a '+'
-	search_entry = fixed		# returns altered search entry to search_entry variable
+	fixed_entry = '+'.join(fixed_entry)		# rejoins words together with a '+'
 
-	return search_entry
+	return fixed_entry
 
+def and_or_not(entry):
+# Edits search entry in such a way that the boolean operators 'AND' 'OR' & 'NOT' work
+	return 0

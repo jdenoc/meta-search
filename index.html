@@ -1,67 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+Filename:	index.html
+Version:	4.1
+-->
 <head>
 
-<!-- GOODBYE -->
-<script type="text/javascript">
-<!-- function that will run anytime user leaves page via a link on front page -->
-	function goodbye(){
-		alert("Sorry to see you leave!");
-	}
-<!-- END GOODBYE -->
-
-<!-- Search Validation -->
-<!-- function will warn the user if they haven't entered anything into the search box -->
-<!-- code-source:	http://www.w3schools.com/JS/js_form_validation.asp	-->
-	function valid_search(){
-		var x=document.forms["engine"]["search"].value
-		if (x==null || x==""){
-			alert("\t\tWARNING!\nYou haven't searched for anything");
-			return false;
-		}
-	}
-<!-- END Search Validation -->
-
-<!-- PAGE OPEN CONFIRMATION -->
-/*	var disclaim = "Disclaimer:\n"+
-			"This page has been developed as part of a MSc. Computer Science course work & therefore academic in basis.\n"+
-			"All rights & trademarks are reserved by those that may appear in this site.\n"+
-			"Please click on OK to continue loading the Meta-Search Engine, or CANCEL to be directed to the DuckDuckGo site.";
-
-	var answer = confirm(disclaim);
-	if (!answer){
-		goodbye();
-		window.location="http://www.duckduckgo.com/";
-	}*/
-<!-- END PAGE OPEN CONFIRMATION -->
-</script>
-
-<!-- Hiding/toggle Advanced Settings -->
-<script>
-	function toggle(){
-		var adv_opts = document.getElementById("advanced_options");
-		var state1 = document.getElementById("hide");
-		var state2 = document.getElementById("show");
-		if(state1.style.display == "block"){
-			state1.style.display = "none";
-			state2.style.display = "block";
-			adv_opts.innerHTML = "<strong>Advanced Settings &#9650;</strong>";
-		} else {
-			state1.style.display = "block";
-			state2.style.display = "none";
-			adv_opts.innerHTML = "<strong>Advanced Settings &#9660;</strong>";
-		}
-	}
-</script>
-<!-- END Hiding/toggle Advanced Settings -->
-
+<script type="text/javascript" src="js/alerts.js"></script>
 <title>Meta-Search</title>
 <link rel="stylesheet" href="css/design.css" />
 <link rel="icon" href="imgs/icons/meta.ico" type="image/x-icon" />
 </head>
 
 <body><div id="container">
-<table border="0" width="100%"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="return valid_search()">
+<table border="0" width="100%"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
 	<tr>
     	<td colspan="2">
         	<h1>Meta-Search Engine</h1>
@@ -98,7 +50,7 @@
 			<a href="javascript:toggle();" id="advanced_options" title="Show/Hide Advanced Settings"><strong>Advanced Settings &#9660;</strong></a>
 			<div id="hide" style="display:block"></div>
 			<div id="show" style="display:none"><table border="0">
-				<tr><td align="center"><em>Engine Display:</em></td></tr>
+				<tr><td align="center"><em><u>Engine Display:</u></em></td></tr>
 				<tr>
 					<td>Aggrigated</td>
 					<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
@@ -117,18 +69,8 @@
 				</tr><tr>
 					<td>&nbsp;</td>
 				</tr><tr>
-					<td align="center"><strong>Max Results</strong></td>
-					<td align="left"><select name="max">
-						<option value="1">30/10</option>
-						<option value="2">60/20</option>
-						<option value="3">90/30</option>
-						<option value="4">120/40</option>
-						<option value="5">150/50</option>
-						<option value="6">180/60</option>
-						<option value="7">210/70</option>
-					</select></td>
-				</tr><tr>
-					<td colspan="2">Note: The Maximum Results number is only a maximum number of results. It is unlikely that the meta-search engine will ever produce that many results.</td>
+					<td align="center"><strong>Total Results</strong></td>
+					<td align="left"><input type="text" name="total" /></td>
 				</tr>
 			</table></div>
 		</td><!-- END Advanced Settings -->
