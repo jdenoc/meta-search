@@ -1,5 +1,8 @@
-V-5.0.3
+V-5.1
 
-Minor fix.
-	search.cgi  updated so that search query now appears in search box of results page.
-ONLINE TESTED!
+This version deals with the development of accessing google results. 
+File 'google_api(DEPRICATED).py' created.
+Results are VERY limited as method has been depricated.
+
+Source:	http://stackoverflow.com/questions/1657570/google-search-from-a-python-app
+Source:	http://groups.google.com/group/Google-AJAX-Search-API/browse_thread/thread/407a1bf2a2219117?pli=1
