@@ -1,6 +1,7 @@
-V-2.1
+V-2.2
 
-code tidied/updated from Version 2.0
-Now retrieves results from 10 pages from each engine.
+Results display has been updated to display a javascript warning for any links that had difficulty accessing.
+Function site_title updated/improved to display less 404 errors.
+Function link_to_dict updated, so that link weight assigns appropriate weight from search page.
 
 ONLINE TESTED!
