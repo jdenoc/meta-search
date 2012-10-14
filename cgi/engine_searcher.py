@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		3.1
+## Version:		3.2
 ##
 import urllib
 import re
@@ -14,15 +14,17 @@ def open_doc(link):
 	return read_file
 # END open_doc
 
-def link_trimmer(site_links):
+def link_trimmer(site_links, i, j):# NEEDS TO BE REVISITED!
 # recieves the strings found in the sites & then trims them down to just the urls
 	trimmed_links = []
-	i=0		# counter
 	
 	for link in site_links:
-		if link[1] not in trimmed_links and i < 10:		
-			trimmed_links.append(link[1])
-			i = i + 1
+		url = link[i]
+		print link
+		print
+		title = link[j]
+		trimmed_links.append((url, title))		# appends a tuple containing the site address & title to a list
+
 	return trimmed_links
 # END link_trimmer
 
@@ -31,22 +33,23 @@ link_criterion = "[+',\s$=;@?!%&:\w./_()#-]+"
 
 def link_finder_ddgo(code):
 # searches through DuckDuckGo site for usable url links
-	url_match_ddgo = re.findall(r'(<a rel="nofollow" href=")('+link_criterion+')(")', code)
-	ddgo_links = link_trimmer(url_match_ddgo)
+	url_match_ddgo = re.findall(r'(<a rel="nofollow" class="l le" href=")('+link_criterion+')(">)(.+)(</a>)', code)
+	ddgo_links = link_trimmer(url_match_ddgo, 1, 3)
 	return ddgo_links
 # END link_finder_ddgo
 
-def link_finder_bing(code):
+def link_finder_bing(code):	# NEEDS TO BE REVISITED!
 # searches through Bing site for usable url links
-	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return)', code)
-	bing_links = link_trimmer(url_match_bing)
+	#<a href="+link_criterion+" onmousedown="return si_T('&amp;ID=SERP,5042.1')">...</a>
+	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T'+link_criterion+'">)(.+)(</a></h3></div><a)', code)
+	bing_links = link_trimmer(url_match_bing, 1, 3)
 	return bing_links
 # END link_finder_bing
 	
-def link_finder_yahoo(code):
+def link_finder_yahoo(code):# NEEDS TO BE REVISITED!
 # searches through Yahoo site for usable links
-	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')', code)
-	yahoo_links = link_trimmer(url_match_yahoo)
+	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-.+\d>)', code)
+	yahoo_links = link_trimmer(url_match_yahoo, 1, 1)
 	return yahoo_links
 # END link_finder_yahoo
 

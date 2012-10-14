@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		3.1
+## Version:		3.2
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -28,13 +28,11 @@ option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
-	option = 'all'
-if max_page_count:
-	max_page_count = int(max_page_count)	# converts a numberical value from a string to an integer
+	option = 'ddgo'
+if (not max_page_count) or (max_page_count > 7):
+	max_page_count = 1
 else:
-	max_page_count = 1
-if max_page_count > 7:
-	max_page_count = 1
+	max_page_count = int(max_page_count)	# converts a numberical value from a string to an integer
 ##### END TESTING & ERROR CHECKING#####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
@@ -49,10 +47,15 @@ else:
 ##### END SEARCH ENTRY TEXT EDITOR #####
 
 # search engine search links
+"""
 google_link = "http://www.google.ie/#hl=en&q=" + search_entry
 ddgo_link = "http://duckduckgo.com/html/?q=" + search_entry
 bing_link = "http://www.bing.com/search?q=" + search_entry
 yahoo_link = "http://search.yahoo.com/search?p=" + search_entry
+"""
+ddgo_link = '..\\VIP\\ddgo.htm'
+
+
 
 # external dictionary to hold:
 link_dict = {}		# all links gathered from search engines
