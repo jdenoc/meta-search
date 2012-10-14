@@ -1,5 +1,4 @@
-V-3.2
+V-3.3
 
-DuckDuckGo search updated
-link_finder_ddgo function updated to extract title from search engine as well as link.
-Function link_trimmer updated, so that extra code is removed from site title and link, then they are put into a tuple and returned.
+Yahoo search updated.
+link_finder_yahoo function updated to extract title from search engine as well as link.

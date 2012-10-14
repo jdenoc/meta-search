@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		3.2
+## Version:		3.3
 ##
 import urllib
 import re
@@ -48,8 +48,8 @@ def link_finder_bing(code):	# NEEDS TO BE REVISITED!
 	
 def link_finder_yahoo(code):# NEEDS TO BE REVISITED!
 # searches through Yahoo site for usable links
-	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-.+\d>)', code)
-	yahoo_links = link_trimmer(url_match_yahoo, 1, 1)
+	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-'+link_criterion+'>)(.+?)(</a>)', code)	# .+?		This indicates 1 or more of any character, but in a non-greedy form
+	yahoo_links = link_trimmer(url_match_yahoo, 1, 3)
 	return yahoo_links
 # END link_finder_yahoo
 

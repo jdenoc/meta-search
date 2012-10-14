@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		3.2
+## Version:		3.3
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -28,7 +28,7 @@ option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
-	option = 'ddgo'
+	option = 'yahoo'
 if (not max_page_count) or (max_page_count > 7):
 	max_page_count = 1
 else:
@@ -53,7 +53,9 @@ ddgo_link = "http://duckduckgo.com/html/?q=" + search_entry
 bing_link = "http://www.bing.com/search?q=" + search_entry
 yahoo_link = "http://search.yahoo.com/search?p=" + search_entry
 """
-ddgo_link = '..\\VIP\\ddgo.htm'
+ddgo_link = '..\\VIP\\yahoo.htm'
+bing_link = '..\\VIP\\Bing.htm'
+yahoo_link = '..\\VIP\\Yahoo.htm'
 
 
 
