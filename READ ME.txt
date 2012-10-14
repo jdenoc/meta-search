@@ -1,3 +1,4 @@
-V-5.4
+V-5.4.1
 
-Neccessary code entered into 'search.cgi' to call 'stats_mod.py' and enable testing.
+Minor fix applied to search.cgi.
+	Error checking applied to make sure that if any part of the statistcial comparision fails, the statistical comparison will be turned off.

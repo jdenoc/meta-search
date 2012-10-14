@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		5.0.3
+## Version:		5.4.1
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -122,37 +122,40 @@ if test:
 
 ##### Google Statistical comparison #####
 if stat == 'on' and (option == 'all' or option == 'col'):
+	try:		# if there are any errors between here and 'except:', then 'except:' is run and 'stat' variable is given a value of 'off'
 # Google results
-	google_dict = stats_mod.google_api(search_entry, total_count)
-	if test:	
-		print '**************************google done**************************'
+		google_dict = stats_mod.google_api(search_entry, total_count)
+		if test:	
+			print '**************************google done**************************'
 
 # Precision Scores
-	Prec_meta = stats_mod.Precision(link_dict.keys(), google_dict.keys())
-	Prec_bing = stats_mod.Precision(bing_dict.keys(), ddgo_dict.keys())
-	Prec_yahoo = stats_mod.Precision(yahoo_dict.keys(), google_dict.keys())
-	Prec_ddgo = stats_mod.Precision(ddgo_dict.keys(), google_dict.keys())
-	Precision_Scores = ['meta:'+str(Prec_meta), 'bing:'+str(Prec_bing), 'yahoo:'+str(Prec_yahoo), 'duckDuckGo:'+str(Prec_ddgo)]
-	if test:
-		print '**************************Precision done**************************'
-	
+		Prec_meta = stats_mod.Precision(link_dict.keys(), google_dict.keys())
+		Prec_bing = stats_mod.Precision(bing_dict.keys(), ddgo_dict.keys())
+		Prec_yahoo = stats_mod.Precision(yahoo_dict.keys(), google_dict.keys())
+		Prec_ddgo = stats_mod.Precision(ddgo_dict.keys(), google_dict.keys())
+		Precision_Scores = ['meta:'+str(Prec_meta), 'bing:'+str(Prec_bing), 'yahoo:'+str(Prec_yahoo), 'duckDuckGo:'+str(Prec_ddgo)]
+		if test:
+			print '**************************Precision done**************************'
+		
 # Recall Scores
-	rec_meta = stats_mod.Recall(link_dict.keys(), google_dict.keys())
-	rec_bing = stats_mod.Recall(bing_dict.keys(), google_dict.keys())
-	rec_yahoo = stats_mod.Recall(yahoo_dict.keys(), google_dict.keys())
-	rec_ddgo = stats_mod.Recall(ddgo_dict.keys(), google_dict.keys())
-	Recall_Scores = ['meta:'+str(rec_meta), 'bing:'+str(rec_bing), 'yahoo:'+str(rec_yahoo), 'duckduckgo:'+str(rec_ddgo)]
-	if test:
-		print '**************************Recall done**************************'
-	
+		rec_meta = stats_mod.Recall(link_dict.keys(), google_dict.keys())
+		rec_bing = stats_mod.Recall(bing_dict.keys(), google_dict.keys())
+		rec_yahoo = stats_mod.Recall(yahoo_dict.keys(), google_dict.keys())
+		rec_ddgo = stats_mod.Recall(ddgo_dict.keys(), google_dict.keys())
+		Recall_Scores = ['meta:'+str(rec_meta), 'bing:'+str(rec_bing), 'yahoo:'+str(rec_yahoo), 'duckduckgo:'+str(rec_ddgo)]
+		if test:
+			print '**************************Recall done**************************'
+		
 # Average Precision Score
-	AP_score_ddgo = stats_mod.Average_Precision(ddgo_dict, google_dict)
-	AP_score_bing = stats_mod.Average_Precision(bing_dict, google_dict)
-	AP_score_meta = stats_mod.Average_Precision(link_dict, google_dict)
-	AP_score_yahoo = stats_mod.Average_Precision(yahoo_dict, google_dict)
-	AP_scores = ['meta:'+str(AP_score_meta), 'bing:'+str(AP_score_bing), 'yahoo:'+str(AP_score_yahoo), 'duckduckgo:'+str(AP_score_ddgo)]
-	if test:	
-		print '**************************Average Precision done**************************'
+		AP_score_ddgo = stats_mod.Average_Precision(ddgo_dict, google_dict)
+		AP_score_bing = stats_mod.Average_Precision(bing_dict, google_dict)
+		AP_score_meta = stats_mod.Average_Precision(link_dict, google_dict)
+		AP_score_yahoo = stats_mod.Average_Precision(yahoo_dict, google_dict)
+		AP_scores = ['meta:'+str(AP_score_meta), 'bing:'+str(AP_score_bing), 'yahoo:'+str(AP_score_yahoo), 'duckduckgo:'+str(AP_score_ddgo)]
+		if test:	
+			print '**************************Average Precision done**************************'
+	except:
+		stat == 'off'
 if test:	
 	print '**************************stats done**************************'
 ##### END Google Statistical comparison #####
@@ -227,6 +230,7 @@ print ""
 			<input type="radio" name="stat" value="off" checked /> OFF
 		</td>
 	</tr>
+""
 <!-- END ADVANCED SETTINGS -->
 </table></form></div>
 ""
