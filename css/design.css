@@ -1,15 +1,11 @@
-/* design.css */
+/*
+Filename:	design.css 
+Version:	5.0
+*/
+
 body{
 	background:url(../imgs/mainbg.jpg) repeat-x #000;
 	color:#FFF;
-}
-
-#container{
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:85px;
-	height:auto;
-	width: 500px;
 }
 
 h1{
@@ -17,9 +13,17 @@ h1{
 	text-align:center;
 }
 
+#container{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:85px;
+	height:auto;
+	width: 900px;
+}
+
 #search-box{
 	width:350px;
-	height:25px;
+	height:35px;
 	padding: 10px;
 	border: 0px solid black;
 	border-radius: 10px;
@@ -38,8 +42,40 @@ h1{
 	-moz-border-radius: 10px ;
 	-webkit-border-radius: 10px ;
 	font-family:"Comic Sans MS", cursive;
-	font-weight:bold;
+	font-weight:bolder;
+	font-size:14px;
 	cursor:pointer;
+}
+
+#search-bar{
+	float: left;
+	width:900px;
+	height: 150px;
+}
+
+#adv_sys{
+	float: left;
+	width: 200px;
+	height: auto;
+	padding-right:55px;
+	padding-left:25px;
+}
+
+#results{
+	float:left;
+	background-color:#343434;
+	border-radius: 10px ;
+	-moz-border-radius: 10px ;
+	-webkit-border-radius: 10px ;
+	padding: 7px;
+	width: 600px;
+	height: 635px;
+}
+
+#scroll-area{
+	height: 535px;
+	overflow:auto;	/* SOURCE:	http://www.w3schools.com/css/pr_pos_overflow.asp */
+	display: block;
 }
 
 a:link,
@@ -55,4 +91,10 @@ a:hover{
 .testing{
 	left:20px;
 	text-align: right;
+}
+
+.blue_link{
+	padding:20px, 0px, 0px, 0px;
+	color:#09F;
+	font-size:12px;
 }

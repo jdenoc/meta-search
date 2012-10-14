@@ -1,6 +1,11 @@
-V-4.2.2
+V-5.0
 
-Minor Problem fixed in result_mod.py file corrected.
-Variable total_count was missing from column_results function.
+Major Update!
+
+Display style & layout of index.html and search.cgi improved.
+Re-search ability feature added to search.cgi.
+Results separated into a blocked area of the page with an auto scroll feature.
+Advanced Settings not hidden.
+Display was done using file search_test.html.
 
 ONLINE TESTED!

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		4.2.2
+## Version:		5.0
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -21,9 +21,8 @@ form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
-#
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
-test = ''		# this variable is use for testing only. all related if statements are for testing
+test = ''									# this variable is use for testing only. all related if statements are for testing
 
 
 ##### TESTING & ERROR CHECKING #####
@@ -31,7 +30,7 @@ option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
 if not search_entry:
 	search_entry = 'HeLlO wOrLd!'
 if option not in option_list:
-	option = 'col'
+	option = 'all'
 if not total_count:		# if user doesn't specify a value, engine will produce up to results found
 	total_count = 100
 	max_page_count = 1
@@ -122,21 +121,67 @@ if test:
 ##### PAGE HEAD #####
 print """
 <html><head>
-<link rel="stylesheet" href="../css/results.css" />
+<link rel="stylesheet" href="../css/design.css" />
 <link rel="icon" href="../imgs/icons/meta.ico" type="image/x-icon" />
-<script type="text/javascript" src="js/alerts.js"></script>
+<script type="text/javascript" src="../js/alerts.js"></script>
 """
 print '<title>'+original_search_entry+' : Meta-Search Results</title>'
 print '</head>'
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
 print '<body><div id="container">'
-print '	<div id="re-search"></div>'
+##### Re-SEARCH & ADVANCED SETTINGS #####
+print """
+<div id="re-search">
+<form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
+<table align="center" border="0" width="490px"><tr>
+	<td colspan="2">
+		<h1>Meta-Search Engine</h1>
+	</td>
+</tr><tr>
+<!-- SEARCH -->
+	<td align="right" width="80%"><input type="text" name="search" id="search-box"/></td>
+	<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
+</tr><tr>
+	<td colspan="2" align="right">
+		Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" checked />On&nbsp;&nbsp;
+		<input type="radio" name="process" value="" />Off
+	</td>
+<!-- END SEARCH -->
+</tr></table>
+</div><br/>
+<div id="adv_sys"><table border="0">
+	<tr><td align="center" colspan="2"><strong>Advanced Settings</strong></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td>Aggrigated</td>
+		<td align="center"><input type="radio" name="adv_dis" value="all" checked /></td>
+	</tr><tr>
+		<td>Columned</td>
+		<td align="center"><input type="radio" name="adv_dis" value="col" /></td>
+	</tr><tr>
+		<td>Bing Results Only</td>
+		<td align="center"><input type="radio" name="adv_dis" value="bing" /></td>
+	</tr><tr>
+		<td>DuckDuckGo Results Only</td>
+		<td align="center"><input type="radio" name="adv_dis" value="ddgo" /></td>
+	</tr><tr>
+		<td>Yahoo! Results Only</td>
+		<td align="center"><input type="radio" name="adv_dis" value="yahoo" /></td>
+	</tr><tr>
+		<td>&nbsp;</td>
+	</tr><tr>
+		<td align="center"><strong>Maximum Results</strong></td>
+		<td align="left"><input type="text" name="total" /></td>
+	</tr>
+</table></form></div>
+"""
+##### END Re-SEARCH & ADVANCED SETTINGS #####
 ##### Search Results #####
 print '	<div id="results">'
 print '		<h2><u>Search Results</u></h2>'
-print '		Your search<em><strong>', original_search_entry, '</strong></em>yielded these results:<br/>'
-print '		<table border="0">'
+print '		Your search<em><strong>', original_search_entry, '</strong></em>yielded these results:<br/><br/>'
+print '		<table border="0" id="scroll-area">'
 result_mod.result_option(option, link_dict, ddgo_dict, bing_dict, yahoo_dict, total_count)
 print '		</table>'
 ##### END Search Results #####

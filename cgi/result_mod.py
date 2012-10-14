@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		4.2.2
+## Version:		5.0
 ##
 import urllib
 import re
@@ -48,17 +48,17 @@ def column_results(ddgo_dict, bing_dict, yahoo_dict, total_count):
 	<tr>
 		<td colspan="6">&nbsp;</td>
 	</tr><tr>
-		<td><strong>DuckDuckGo Results</strong></td>
-		<td><strong>Bing Results</strong></td>
-		<td><strong>Yahoo Results</strong></td>
+		<td width="33%"><strong>DuckDuckGo Results</strong></td>
+		<td width="33%"><strong>Bing Results</strong></td>
+		<td width="33%"><strong>Yahoo Results</strong></td>
 	</tr><tr>
 		<td colspan="6"><hr/></td>
-	</tr><tr><td valign="top"><table border="0">
+	</tr><tr><td valign="top"><table border="0" class="results">
 	"""
 	show_links(ddgo_dict, total_count)
-	print '</table></td><td valign="top"><table border = "0">'
+	print '</table></td><td valign="top"><table border = "0" class="results">'
 	show_links(bing_dict, total_count)
-	print '</table></td><td valign="top"><table border="0">'
+	print '</table></td><td valign="top"><table border="0" class="results">'
 	show_links(yahoo_dict, total_count)
 	print '</table></td></tr>'
 		
