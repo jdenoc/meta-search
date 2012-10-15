@@ -1,0 +1,44 @@
+/*
+Filename:	feedB.css 
+Version:	6.4
+*/
+
+body{
+	background:url(../imgs/mainbg.jpg) repeat-x #000;
+	color:#FFF;
+}
+
+h1{
+	font-family:"Comic Sans MS", cursive;
+	text-align:center;
+}
+
+#container{
+	margin-left:auto;
+	margin-right:auto;
+	height:auto;
+	width: 900px;
+}
+
+#opening_address{
+}
+
+#feed_form{
+	height: 555px;
+	overflow:auto;
+	background-color:#343434;
+	display: block;
+	border-radius: 10px ;
+	-moz-border-radius: 10px ;
+	-webkit-border-radius: 10px ;
+	width:725px;
+		margin-left:auto;
+	margin-right:auto;
+	padding:20px;
+	height:615px;
+}
+
+.important{
+	color:#F00;
+	font-weight:bold;
+}

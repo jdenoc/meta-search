@@ -1,0 +1,17 @@
+V-6.4
+
+Feedback/evaluation form completed.
+Files created:
+	feedB.css
+	feedB.js
+	feedback.php
+	sent.html
+
+'feedback.html' created for testing purposes.
+
+General ideas for questions in 'evaluationQuestions.doc'
+
+Feedback is sent by email to:
+				10972081@ucdconnent.ie
+
+ONLINE TESTED!

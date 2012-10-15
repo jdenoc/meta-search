@@ -1,7 +1,0 @@
-V-6.3
-
-Functions in html_mod.py split
-Clustering now available through query_mod.py (a.k.a. alternate/related searches).
-search_test_4.html and cluster_results.html were created to assist in the aesthetics of cluster layouts.
-
-ONLINE TESTED!
