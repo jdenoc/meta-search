@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.5.3
+## Version:		6.5.4
 ## This file is the main python/cgi file for entire meta-search engine.
 ## The processes it performs are:
 ##		importing functions from other python files

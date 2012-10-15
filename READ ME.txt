@@ -1,4 +1,3 @@
-V-6.5.3
+V-6.5.4
 
-Search code criteria in link_finder_yahoo() function in engine_search.py file updated
-Minor Test display code corrected in search.cgi file
+Search code criteria updated for link_finder_bing() function in engine_searcher.py file

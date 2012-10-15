@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		6.5.3
+## Version:		6.5.4
 ## This file opens search engine webpages and takes the links from them.
 ## This file contains functions that:
 ##		opens sites, retrieves site code, closes site & then returns site code
@@ -45,8 +45,7 @@ def link_finder_ddgo(code):
 
 def link_finder_bing(code):
 # searches through Bing site for usable url links
-	#url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
-	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
+	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" h=".+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
 	if url_match_bing:
 		bing_links = link_trimmer(url_match_bing)
 		return bing_links
