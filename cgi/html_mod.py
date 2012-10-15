@@ -1,12 +1,13 @@
 #!/usr/bin/python
 ##
 ## Filename:	html_mod.py
-## Version:		6.2
+## Version:		6.3
 ##
 import urllib
 import re
 
 def page_head(original_search_entry):
+# 	
 	print """
 	<html><head>
 		<link rel="stylesheet" href="../css/design.css" />
@@ -16,9 +17,9 @@ def page_head(original_search_entry):
 	print '	<title>'+original_search_entry+' : Meta-Search Results</title>'
 	print '</head>'
 
-def page_body(original_search_entry):
+def search_area(original_search_entry):
 	print '<body><div id="container">'
-	##### Re-SEARCH & ADVANCED SETTINGS #####
+	##### Re-SEARCH #####
 	print """
 	<div id="re-search">
 	<form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
@@ -40,10 +41,13 @@ def page_body(original_search_entry):
 	<!-- END SEARCH -->
 	</tr></table>
 	</div><br/>
+	"""
+	
+def result_display_change():
+##### ADVANCED SETTINGS #####
+	print """
 	<div id="adv_sys"><table border="0" width="225px">
 	<!-- ADVANCED SETTINGS -->
-		<tr><td align="center" colspan="2"><strong><u>Display</u></strong></td></tr>
-		<tr><td>&nbsp;</td></tr>
 		<tr>
 			<td>Standard: </td>
 			<td align="center"><input type="radio" name="adv_dis" value="all" onclick="change_display()" /></td>
@@ -65,7 +69,12 @@ def page_body(original_search_entry):
 			<td align="center" colspan="2"><strong>Maximum Results: </strong></td>
 		<tr></tr>
 			<td align="center" colspan="2"><input type="text" name="total" /></td>
-		</tr><tr>
+		</tr>
+	"""	
+				
+def adv_sets():		
+	print """
+		<tr>
 			<td>&nbsp;</td>
 		</tr><tr>
 			<td><div id="adv_sets_off" style="display:block">
@@ -83,6 +92,12 @@ def page_body(original_search_entry):
 					<td>
 						<input type="radio" name="agr" value="on" checked />ON<br/>
 						<input type="radio" name="agr" value="off" />OFF
+					</td>
+				</tr><tr>
+					<td align="right">Related Searches:</td>
+					<td>
+						<input type="radio" name="clus" value="yes" checked />ON<br/>
+						<input type="radio" name="clus" value="" />OFF
 					</td>
 				</tr></table>
 			</div></td>

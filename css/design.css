@@ -1,6 +1,6 @@
 /*
 Filename:	design.css 
-Version:	6.2
+Version:	6.3
 */
 
 body{
@@ -58,7 +58,7 @@ h1{
 	width: 245px;
 	height: auto;
 	padding-right:15px;
-	padding-left:25px;
+	padding-left:15px;
 }
 
 #results{
@@ -97,4 +97,13 @@ a:hover{
 	padding:20px, 0px, 0px, 0px;
 	color:#09F;
 	font-size:12px;
+}
+
+.related_search:hover{
+	background-color:#343434;
+	padding:3px;
+	border-radius: 5px ;
+	-moz-border-radius: 5px ;
+	-webkit-border-radius: 5px ;
+
 }

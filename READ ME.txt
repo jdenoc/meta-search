@@ -1,7 +1,7 @@
-V-6.2
+V-6.3
 
-File html_mod.py created.
-Removed html code from search.cgi and placed into html_mod.py.
-Done to improve modularity.
+Functions in html_mod.py split
+Clustering now available through query_mod.py (a.k.a. alternate/related searches).
+search_test_4.html and cluster_results.html were created to assist in the aesthetics of cluster layouts.
 
 ONLINE TESTED!

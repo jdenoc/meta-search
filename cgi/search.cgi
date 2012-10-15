@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.2
+## Version:		6.3
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -20,7 +20,7 @@ import result_mod		# functions to add links to link_dict & displays them
 import stats_mod		# used to find statistical comparisons between this engine & google
 import html_mod			# used to display html code of results page
 
-# retrieves information sent from home/front page
+# retrieves information sent from home/front/main page
 form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
@@ -28,6 +28,7 @@ option = form.getvalue("adv_dis")			# stores a value that indicates how the user
 stat = form.getvalue("stat")				# stores a value that would indicate if the statistics analysis is 'on' or not
 agr = form.getvalue("agr")					# stores a value that would indicate if the aggrigationg technique is 'on' or not
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
+clustering = form.getvalue("clus")
 test = ''									# this variable is use for testing only. all related 'if statements' are for testing
 
 ##### TESTING & ERROR CHECKING #####
@@ -50,20 +51,26 @@ else:
 	else:
 		max_page_count = total_count/10
 if not agr:
-	agr = 'on'		
+	agr = 'on'
 if test:
 	print '**************************end error check**************************'
 ##### END TESTING & ERROR CHECKING #####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
+search_entry = search_entry.split()			# splits all words
 
+##### CLUSTERING #####
+if clustering == 'yes':
+	cluster_dict = query_mod.cluster(search_entry)
+	if test:
+		print '**************************clustering complete**************************'
+##### END CLUSTERING #####
+	
 ##### SEARCH ENTRY TEXT EDITOR #####
 if text_edit:
 # Edit search entry to try & improve search performance
 	search_entry = query_mod.search_entry_editor(search_entry)
-else:
-# basic edit of search entry. REQUIRED!
-	search_entry = query_mod.tokeniser(search_entry)
+search_entry = '+'.join(search_entry)		# rejoins words together with a '+'
 if test:	
 	print '**************************entry edited**************************'
 ##### END SEARCH ENTRY TEXT EDITOR #####
@@ -72,7 +79,6 @@ if test:
 ddgo_link = "http://duckduckgo.com/html/?q=" + search_entry
 bing_link = "http://www.bing.com/search?q=" + search_entry
 yahoo_link = "http://search.yahoo.com/search?p=" + search_entry
-
 
 # external dictionary to hold:
 link_dict = {}		# all links gathered from search engines
@@ -161,16 +167,19 @@ if stat == 'on' and (option == 'all' or option == 'col'):
 			print '**************************Average Precision done**************************'
 	except:
 		stat = 'off'
-if test:
-	print '**************************stats done**************************'
+	if test:
+		print '**************************stats done**************************'
 ##### END Google Statistical comparison #####
-
 ##### HTML CODE #####
 ##### PAGE HEAD #####
 html_mod.page_head(original_search_entry)
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
-html_mod.page_body(original_search_entry)
+html_mod.search_area(original_search_entry)
+html_mod.result_display_change()
+if clustering == 'yes':
+	query_mod.cluster_display(cluster_dict)
+html_mod.adv_sets()
 if stat == 'on':
 	stats_mod.stat_display(option, Precision_Scores, Recall_Scores, AP_scores)
 print '<!-- END ADVANCED SETTINGS -->'
@@ -188,3 +197,6 @@ print '	</div>'
 print '</div></body></html>'
 ##### END PAGE BODY #####
 ##### END HTML CODE #####
+if test:
+	print '**************************HTML done**************************'
+
