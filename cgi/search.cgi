@@ -1,7 +1,22 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.4
+## Version:		6.5
+## This file is the main python/cgi file for entire meta-search engine.
+## The processes it performs are:
+##		importing functions from other python files
+## 		retrieving form information sent from the main search page & itself
+##		minor/basic error checking/correction on variables containing data from the search form
+##			if variables are NULL/NONE then they are give a default value
+##		runs clustering (if turned on)
+##		query editing (if turned on)
+##			tokenisation is done regardless
+##		search engines are searched for links, links then place into dictionary type variables
+##		statistical analysis is performed using Google as a basis for comparison (if turned on)
+##			if any error occurs durning analysis, it is turned off
+##		HTML code is printed to browser
+##
+##
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -28,7 +43,7 @@ option = form.getvalue("adv_dis")			# stores a value that indicates how the user
 stat = form.getvalue("stat")				# stores a value that would indicate if the statistics analysis is 'on' or not
 agr = form.getvalue("agr")					# stores a value that would indicate if the aggrigationg technique is 'on' or not
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
-clustering = form.getvalue("clus")
+clustering = form.getvalue("clus")			# stores a value that would indicate if clustering (alternative searches) is turned 'on' or 'off'
 test = ''									# this variable is use for testing only. all related 'if statements' are for testing
 
 ##### TESTING & ERROR CHECKING #####
@@ -49,7 +64,10 @@ else:
 		total_count = 30
 		max_page_count = 1
 	else:
-		max_page_count = total_count/10
+		if total_count%10 == 0:
+			max_page_count = total_count/10
+		else:
+			max_page_count = (total_count/10)+1
 if not agr:
 	agr = 'on'
 if test:
@@ -175,11 +193,11 @@ if stat == 'on' and (option == 'all' or option == 'col'):
 html_mod.page_head(original_search_entry)
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
-html_mod.search_area(original_search_entry)
+html_mod.search_area(original_search_entry, text_edit)
 html_mod.result_display_change()
 if clustering == 'yes':
 	query_mod.cluster_display(cluster_dict)
-html_mod.adv_sets()
+html_mod.adv_sets(stat, agr, clustering)
 if stat == 'on':
 	stats_mod.stat_display(option, Precision_Scores, Recall_Scores, AP_scores)
 print '<!-- END ADVANCED SETTINGS -->'

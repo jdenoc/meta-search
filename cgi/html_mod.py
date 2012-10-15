@@ -1,28 +1,34 @@
 #!/usr/bin/python
 ##
 ## Filename:	html_mod.py
-## Version:		6.4.1
+## Version:		6.5
+## This file contains functions that:
+##		prints the HTML head section code to browser
+##		prints search box and pre-processing option to browser
+##		prints the display change option to the browser
+##		prints current advanced settings to browser
 ##
 import urllib
 import re
 
-def page_head(original_search_entry):
-# 	
+def page_head(search_entry):
+# prints the HTML head section code to browser
 	print """
 	<html><head>
 		<link rel="stylesheet" href="../css/design.css" />
 		<link rel="icon" href="../imgs/icons/meta.ico" type="image/x-icon" />
 		<script type="text/javascript" src="../js/alerts.js"></script>
 	"""
-	print '	<title>'+original_search_entry+' : Meta-Search Results</title>'
+	print '	<title>'+search_entry+' : Meta-Search Results</title>'
 	print '</head>'
 
-def search_area(original_search_entry):
+def search_area(search_entry, query_edit):
+# prints search box and pre-processing option to browser
 	print '<body><div id="container">'
 	##### Re-SEARCH #####
 	print """
 	<div id="re-search">
-	<form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
+	<form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="return valid_search()">
 	<table align="center" border="0" width="490px"><tr>
 		<td colspan="2">
 			<h1>Meta-Search Engine</h1>
@@ -30,23 +36,29 @@ def search_area(original_search_entry):
 	</tr><tr>
 	<!-- SEARCH -->
 	"""
-	print '	<td align="right" width="80%"><input type="text" name="search" id="search-box" value="'+original_search_entry+'" /></td>'
+	print '	<td align="right" width="80%"><input type="text" name="search" id="search-box" value="'+search_entry+'" /></td>'
 	print """
-		<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
+		<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" onclick="return too_many()"/></td>
 	</tr><tr>
 		<td colspan="2" align="right">
-			Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" checked />On&nbsp;&nbsp;
-			<input type="radio" name="process" value="" />Off
-		</td>
+			Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" """,
+	if query_edit:
+		print 'checked',
+	print ' />On&nbsp;&nbsp;'
+	print '		<input type="radio" name="process" value="" ',
+	if not query_edit:
+		print 'checked',
+	print ' />Off'
+	print """	</td>
 	<!-- END SEARCH -->
 	</tr><tr>
-		<td><a href="../feedback.php" target="_blank" title="Please Give Feedback!">Feedback.php</a></td>
+		<td><a href="../feedback.php" target="_blank" title="Please Give Feedback!" class="related_search"><strong>Leave Feedback</strong></a></td>
 	</tr></table>
 	</div><br/>
 	"""
 	
 def result_display_change():
-##### ADVANCED SETTINGS #####
+# prints the display change option to the browser
 	print """
 	<div id="adv_sys"><table border="0" width="225px">
 	<!-- ADVANCED SETTINGS -->
@@ -74,7 +86,8 @@ def result_display_change():
 		</tr>
 	"""	
 				
-def adv_sets():		
+def adv_sets(stat, agr, clus):
+# prints current advanced settings to browser
 	print """
 		<tr>
 			<td>&nbsp;</td>
@@ -83,24 +96,42 @@ def adv_sets():
 				<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('adv_sets_on');hideStuff('adv_sets_off')"><strong>Advanced Settings &#9660;</strong></a>
 			</div><div id="adv_sets_on" style="display:none">
 				<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('adv_sets_off');hideStuff('adv_sets_on')"><strong>Advanced Settings &#9650;</strong></a>
-				<table><tr>
+				<table border="0"><tr>
 					<td align="right">Stats:&nbsp;&nbsp;&nbsp;</td>
-					<td>
-						<input type="radio" name="stat" value="on" />ON<br/>
-						<input type="radio" name="stat" value="off" checked />OFF
-					</td>
+					<td width="50%">
+						<input type="radio" name="stat" value="on" """,
+	if stat == 'on':
+		print 'checked',
+	print ' />ON<br/>'
+	print '					<input type="radio" name="stat" value="off" ',
+	if stat != 'on':
+		print 'checked',
+	print ' />OFF'
+	print """				</td>
 				</tr><tr>
 					<td align="right">Aggrigation:</td>
 					<td>
-						<input type="radio" name="agr" value="on" checked />ON<br/>
-						<input type="radio" name="agr" value="off" />OFF
-					</td>
+						<input type="radio" name="agr" value="on" """,
+	if agr == 'on':
+		print 'checked',
+	print ' />ON<br/>'
+	print '					<input type="radio" name="agr" value="off" ',
+	if agr != 'on':
+		print 'checked',
+	print '/>OFF'
+	print """				</td>
 				</tr><tr>
 					<td align="right">Alternative Searches:</td>
 					<td>
-						<input type="radio" name="clus" value="yes" checked />ON<br/>
-						<input type="radio" name="clus" value="" />OFF
-					</td>
+						<input type="radio" name="clus" value="yes" """,
+	if clus == 'yes':
+		print 'checked',
+	print '	/>ON<br/>'
+	print '					<input type="radio" name="clus" value="" '
+	if clus !='yes':
+		print 'checked',
+	print ' />OFF'
+	print """				</td>
 				</tr></table>
 			</div></td>
 		</tr><tr>

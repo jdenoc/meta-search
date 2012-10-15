@@ -1,7 +1,12 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		6.3
+## Version:		6.5
+## This file contains functions that:
+##		opens sites, retrieves site code, closes site & then returns site code
+##		recieves the strings found in the sites & then trims them down to just the urls
+##		searches through DuckDuckGo, Bing, Yahoo! sites for usable url links
+##		searches HTML code of DuckDuckGo, Bing, Yahoo! for a link to the next page of results
 ##
 import urllib
 import re

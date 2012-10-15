@@ -1,12 +1,13 @@
 <?php
 // Filename:	feedback.php
-// Version:		6.4.1
+// Version:		6.5
+// This file is a feedback form that is used to retrieve details on user experience of the meta-search engine
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<script type="text/javascript" src="js/feedB.js"></script>
+<script type="text/javascript" src="js/alerts.js"></script>
 <link rel="stylesheet" href="css/feedB.css" />
 <link rel="icon" href="imgs/icons/meta.ico" type="image/x-icon" />
 <title>Feedback & Evaluation</title>
@@ -25,7 +26,8 @@
 	<?php if (!empty($_POST["Submit"])){
 		$error=array();
 
-		// (1) Search Engine validation & error messaging
+// Error Checking & Messaging
+		// (Q1) 
 		if (empty($_POST['engine'])){
 			$error['engine']='Please Answer Question 1';
 		}else if($_POST['engine']=='Other'){
@@ -35,61 +37,63 @@
 				$_POST['engine_other'] = trim($_POST['engine_other']);
 			}
 		}
-		// (2)
+		// (Q2)
 		if (empty($_POST['result_quality'])){
 			$error['result_quality'] = 'Please choose a value for Q.2';
 		}
-		// (3)
+		// (Q3)
 		if (empty($_POST['easy_to_use'])){
 			$error['easy_to_use'] = 'Please choose a value for Q.3';
 		}
-		// (4)
+		// (Q4)
 		if (empty($_POST['results_presented'])){
 			$error['result_presented'] = 'Please choose a value for Q.4';
 		}
-		// (5)
+		// (Q5)
 		if (empty($_POST['speed'])){
 			$error['speed'] = 'Please choose a value for Q.5';
 		}
-		// (6)
+		// (Q6)
 		if (empty($_POST['make_default'])){
 			$error['make_default'] = 'Please choose a value for Q.6';
 		}
-		// (7)
+		// (Q7)
 		if (empty($_POST['clustering'])){
 			$error['clustering'] = 'Please choose a value for Q.7';
 		}
-		// (8)
+		// (Q8)
 		if (empty($_POST['display'])){
 			$error['display'] = 'Please choose a value for Q.8';
 		}
-		// (9)
+		// (Q9)
 		if (empty($_POST['aggrigation'])){
 			$error['aggrigation'] = 'Please choose a value for Q.9';
 		}
-		// (10)
+		// (Q10)
 		if (empty($_POST['pre-pro'])){
 			$error['pre-pro'] = 'Please choose a value for Q.10';
 		}
-		// (11)
+		// (Q11)
 		if (empty($_POST['num_results'])){
 			$error['num_results'] = 'Please choose a value for Q.11';
 		}
-		//
+		// (Age Group)
 		if (empty($_POST['age'])){
 			$error['age'] = 'Please choose an age group from the drop-down menu';
 		}
-		//
+		// (Gender)
 		if (empty($_POST['sex'])){
 			$error['sex'] = 'Please choose a Gender';
 		}
-		//
+		// (Name)
 		if (!empty($_POST['name'])){
 			$_POST['name'] = trim($_POST['name']);
 		}
+		// (Errors/Problems discovered)
 		if (!empty($_POST['probs'])){
 			$_POST['probs'] = trim($_POST['probs']);
 		}
+		// (Additional Comments)
 		if (!empty($_POST['comments'])){
 			$_POST['comments'] = trim($_POST['comments']);
 		}
@@ -128,7 +132,7 @@
 		echo '</ul>';
 	}?>
 
-	<form action="feedback.php" method="post" name="feedback" onsubmit="validateIt();return false;">
+	<form action="feedback.php" method="post" name="feedback">
 	<table border="0"><tr>
 		<td colspan="10">
 			1.&nbsp;&nbsp;&nbsp;Which search engine do you normally use?
@@ -150,12 +154,12 @@
 		<td>&nbsp;</td>
 		<td colspan="10">Please answer the following, and where appropriate use the following as a guide:<br/>
 			&nbsp;&nbsp;&nbsp;
-			<strong>1</strong> = ‘strongly disagree’&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<strong>2</strong> = ‘disagree’&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<strong>3</strong> = ‘neither agree or disagree’<br/>
+			<strong>1</strong> = 'strongly disagree'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<strong>2</strong> = 'disagree'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<strong>3</strong> = 'neither agree or disagree'<br/>
 			&nbsp;&nbsp;&nbsp;
-			<strong>4</strong> = ‘agree'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<strong>5</strong> = ‘strongly agree
+			<strong>4</strong> = 'agree'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<strong>5</strong> = 'strongly agree'
 		</td>
 	</tr><tr>
 		<td>&nbsp;</td>

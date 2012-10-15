@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--
 Filename:	index.html
-Version:	6.4
+Version:	6.5
+This is the main search page of the meta-search engine. All users start here.
 -->
 <head>
 
@@ -13,7 +14,7 @@ Version:	6.4
 </head>
 
 <body><div id="container">
-<table border="0" width="490px" align="center"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
+<table border="0" width="490px" align="center"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="return valid_search()">
 	<tr>
     	<td colspan="2">
         	<h1>Meta-Search Engine</h1>
@@ -21,7 +22,7 @@ Version:	6.4
     </tr><tr>
 	<!-- SEARCH -->
     	<td align="right" width="80%"><input type="text" name="search" id="search-box"/></td>
-        <td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
+        <td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" onclick="return too_many()"/></td>
 	</tr><tr>
     	<td colspan="2" align="right">
 			Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" checked />On&nbsp;&nbsp;
@@ -84,7 +85,7 @@ Version:	6.4
 				</tr><tr>
 					<td colspan="2"><hr/></td>
 				</tr><tr>
-					<td align="center"><strong>Aggrigation:</strong></td>
+					<td align="center"><strong>Aggregation:</strong></td>
 					<td>
 						<input type="radio" name="agr" value="on" checked /> ON<br/>
 						<input type="radio" name="agr" value="off" /> OFF

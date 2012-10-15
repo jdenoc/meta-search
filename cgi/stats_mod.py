@@ -1,7 +1,13 @@
 #!/usr/bin/python
 ##
 ## Filename:	stats.py
-## Version:		6.3
+## Version:		6.5
+## This file contains functions that:
+##		retrieves results from the Google CustomSearch API
+##		calculates the precision score
+##		calculates the recall score
+##		calculates the average precision score
+##		displays the statistical analysis
 ##
 import urllib
 import re
@@ -38,16 +44,14 @@ def Precision(other_engine, google):
 # Calculates the precision of a search
 # i.e.: (number of relevant documments retrieved)/(total number of documents retrieved)
 		
+	rel_score = 0
 # Get relevance scores
 # Checks to make sure that the links retrieved by the meta search are relevant, w.r.t. Google
-	rel_score = 0
 	for item in other_engine:
-		#print item
 		if item in google:
 			rel_score = rel_score + 1
-			#print rel_score
 
-	# Get Precision Scores
+# Get Precision Scores
 	Precesion = float(rel_score)/float(len(other_engine))
 	return Precesion
 		
@@ -55,14 +59,12 @@ def Recall(other_engine, google):
 # Calculates the recall of a search
 # i.e.: (number of relevant documents retrieved)/(total number of relevant documents)
 	
+	rel_score = 0
 # Get relevance scores
 # Checks to make sure that the links retrieved by the meta search are relevant, w.r.t. Google
-	rel_score = 0
 	for item in other_engine:
-		#print item
 		if item in google:
 			rel_score = rel_score + 1
-			#print rel_score
 
 # Get Recall Scores
 	Recall = float(rel_score)/float(len(google))
@@ -104,6 +106,7 @@ def Average_Precision(other_engine, google):
 	return AP_score
 
 def stat_display(option, Precision_Scores, Recall_Scores, AP_scores):
+# Retrieves statistical scores & then dsiplays them
 # Precision Score Retrieval
 	meta_pr = re.search(r'(\w+:)(\d+\.*\d*)', Precision_Scores[0])
 	bing_pr = re.search(r'(\w+:)(\d+\.*\d*)', Precision_Scores[1])

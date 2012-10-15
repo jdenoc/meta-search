@@ -1,7 +1,7 @@
 /*
 Filename:	alerts.js
-Version:	6.4
-
+Version:	6.5
+This file contains all javascript functions are used throughout the meta-search engine
  */
 
 /* *** GOODBYE *** */
@@ -23,20 +23,8 @@ function valid_search(){
 }
 /* *** END Search Validation *** */
 
-/* *** PAGE OPEN CONFIRMATION *** */
-/*	var disclaim = "Disclaimer:\n"+
-			"This page has been developed as part of a MSc. Computer Science course work & therefore academic in basis.\n"+
-			"All rights & trademarks are reserved by those that may appear in this site.\n"+
-			"Please click on OK to continue loading the Meta-Search Engine, or CANCEL to be directed to the DuckDuckGo site.";
-
-	var answer = confirm(disclaim);
-	if (!answer){
-		goodbye();
-		window.location="http://www.duckduckgo.com/";
-	}*/
-/* *** END PAGE OPEN CONFIRMATION *** */
-
 /* *** SHOW/HIDE items *** */
+// Shows or hides a block of HTML code
 // SOURCE:		http://girlswhogeek.com/tutorials/2007/show-and-hide-elements-with-javascript
 function showStuff(id) {
 	document.getElementById(id).style.display = 'block';
@@ -46,29 +34,16 @@ function hideStuff(id) {
 }
 /* *** END SHOW/HIDE items *** */
 
-/* *** DEAD LINK *** */
-// This script prompts a user to confirm that they wish to continue to a webpage & that they have been warned that the webpage may not exist
-function dead_link(){
-	var link_warn = "&#07;WARNING!!!\\nAn error occured when validating the page you are about to access. It may no longer be active.\\nClick OK to continue anyway or Cancel to remain.";
-	var answer = confirm(link_warn);
-	if (answer){
-		alert("You were warned!");
-	}else{
-		return false;
-	}
-}
-/* *** END DEAD LINK *** */
-
 /* *** TOO MANY LINKS *** */
 // This function alerts the user that they have entered a value too high or too low for the meta-search engine to request
 function too_many(){
 	var x=document.engine.total.value
 	var num = parseInt(x)
 	if (num > 100){
-		alert("WARNING!\nToo many results");
+		alert("WARNING!\nToo many results entered.\nMaximum number of results that can be entered is 100.");
 		return false;
 	}else if(num <= 0){
-		alert("WARNING!\nToo few results");
+		alert("WARNING!\nToo few results.\nMinimum number of results that can be entered is 1.");
 		return false;
 	}
 }
@@ -76,7 +51,14 @@ function too_many(){
 
 /* *** CHANGE DISPLAY *** */
 // This function allows the user to resubmit the search as a different display
+// provided there is a query & an appropriate value for the amount of results
 function change_display(){
-	document.engine.submit();
+	if (too_many() == false){
+		return false;
+	}else if(valid_search() == false){
+		return false;
+	}else{
+		document.engine.submit();
+	}
 }
 /* *** END CHANGE DISPLAY */
