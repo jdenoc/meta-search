@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.5
+## Version:		6.5.1
 ## This file is the main python/cgi file for entire meta-search engine.
 ## The processes it performs are:
 ##		importing functions from other python files
@@ -184,7 +184,7 @@ if stat == 'on' and (option == 'all' or option == 'col'):
 		if test:
 			print '**************************Average Precision done**************************'
 	except:
-		stat = 'off'
+		stat = 'error'
 	if test:
 		print '**************************stats done**************************'
 ##### END Google Statistical comparison #####
@@ -198,8 +198,10 @@ html_mod.result_display_change()
 if clustering == 'yes':
 	query_mod.cluster_display(cluster_dict)
 html_mod.adv_sets(stat, agr, clustering)
-if stat == 'on':
+if stat =='on':
 	stats_mod.stat_display(option, Precision_Scores, Recall_Scores, AP_scores)
+elif stat == 'error':
+	html_mod.stat_display_error()
 print '<!-- END ADVANCED SETTINGS -->'
 print '</table></form></div>'
 ##### END Re-SEARCH & ADVANCED SETTINGS #####
@@ -217,4 +219,3 @@ print '</div></body></html>'
 ##### END HTML CODE #####
 if test:
 	print '**************************HTML done**************************'
-

@@ -1,7 +1,8 @@
 #!/usr/bin/python
 ##
 ## Filename:	query_mod.py
-## Version:		6.5
+## Version:		6.5.1
+## This file processes the query and produces clustering (alterantive search) results.
 ## This file contains functions that:
 ##		edit the search entry to improve search performance
 ##		obtains the search query & then finds related words & synonyms that could potentially be searched by user to get better search results

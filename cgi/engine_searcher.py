@@ -1,7 +1,8 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		6.5
+## Version:		6.5.1
+## This file opens search engine webpages and takes the links from them.
 ## This file contains functions that:
 ##		opens sites, retrieves site code, closes site & then returns site code
 ##		recieves the strings found in the sites & then trims them down to just the urls

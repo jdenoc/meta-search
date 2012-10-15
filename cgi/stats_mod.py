@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	stats.py
-## Version:		6.5
+## Version:		6.5.1
 ## This file contains functions that:
 ##		retrieves results from the Google CustomSearch API
 ##		calculates the precision score

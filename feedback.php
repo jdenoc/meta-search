@@ -1,6 +1,6 @@
 <?php
 // Filename:	feedback.php
-// Version:		6.5
+// Version:		6.5.1
 // This file is a feedback form that is used to retrieve details on user experience of the meta-search engine
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

@@ -1,6 +1,6 @@
 /*
 Filename:	alerts.js
-Version:	6.5
+Version:	6.5.1
 This file contains all javascript functions are used throughout the meta-search engine
  */
 

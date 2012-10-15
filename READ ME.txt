@@ -1,30 +1,5 @@
-V-6.5
+V-6.5.1
 
-Commenting improved in all files
-
-Errors found from Feedback corrected:
-	index.html, Aggregation spelt wrong
-	alerts.js, function too_many warning messages updated to be more understandable
-	alerts.js, function change_display updated to include functions too_many and valid_search
-	results_mod.py, link_to_dict function updated to make sure that the link_list variable is not empty
-	html_mod.py, adv_sets function updated to have current advanced settings, rather that default only
-	html_mod.py, search_area function updated to have current setting for pre-processing
-	html_mod.py, search_area function updated to change feedback link wording
-	search.cgi updated accordingly
-
-Minor calculation error corrected
-	result_mod.py updated so that score calculation formula is now:
-	score = (len(link_list)-link_num)*(weight-weight_limiter)
-
-Minor error with maximum results available fixed
-	Testing & error checking section of search.cgi updated
-	Error (if an int less that 10 was entered into Maximum Results field, engine would display no results)
-
-feedB.js deleted as functions are already present in alerts.js
-feedback.php updated to use alerts.js instead of feedB.js
-
-html_mod.py and index.html updated so that JavaScript error checking will work more effectively
-	JavaScript function valid_search call remains in form tag as onsubmit value
-	JavaScript function too_many call moved to serach button tag as onclick value
-
-ONLINE TESTED!
+Function stat_display_error added to html_mod.py
+New statistical error utilises this function
+search.cgi updated accordingly.

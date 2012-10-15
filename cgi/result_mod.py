@@ -1,7 +1,8 @@
 #!/usr/bin/python
 ##
 ## Filename:	result_mod.py
-## Version:		6.5
+## Version:		6.5.1
+## This file processes the retrieved links & displays them.
 ## This file contains functions that:
 ##		assigns a score value to a link & then places that link, it's title & score into a dictionary variable
 ##			if link is already in dictionary, then score is increased by 1

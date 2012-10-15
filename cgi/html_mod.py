@@ -1,7 +1,8 @@
 #!/usr/bin/python
 ##
 ## Filename:	html_mod.py
-## Version:		6.5
+## Version:		6.5.1
+## This file prints the general HTML code found on all result pages to browser.
 ## This file contains functions that:
 ##		prints the HTML head section code to browser
 ##		prints search box and pre-processing option to browser
@@ -100,11 +101,11 @@ def adv_sets(stat, agr, clus):
 					<td align="right">Stats:&nbsp;&nbsp;&nbsp;</td>
 					<td width="50%">
 						<input type="radio" name="stat" value="on" """,
-	if stat == 'on':
+	if stat in ['on', 'error']:
 		print 'checked',
 	print ' />ON<br/>'
 	print '					<input type="radio" name="stat" value="off" ',
-	if stat != 'on':
+	if stat not in ['on', 'error']:
 		print 'checked',
 	print ' />OFF'
 	print """				</td>
@@ -137,4 +138,30 @@ def adv_sets(stat, agr, clus):
 		</tr><tr>
 			<td>&nbsp;</td>
 		</tr>
+	"""
+	
+def stat_display_error():
+# prints an error message if there was an error while statistical analysis was being processes.
+	print """
+	<tr>
+		<td>&nbsp;</td>
+	</tr><tr>
+	<td colspan="2"><!-- DISPLAY STATISTICS -->
+		<div id="hide" style="display:block">
+			<a href="#" title="Show/Hide Statistical Analysis" onclick="showStuff('show');hideStuff('hide')"><strong>Statistical Analysis &#9660;</strong></a>
+		</div>
+		<div id="show" style="display:none"><table>
+		<tr><td>
+			<a href="#" title="Show/Hide Statistical Analysis" onclick="showStuff('hide');hideStuff('show')"><strong>Statistical Analysis &#9650;</strong></a>
+		</td></tr>
+		<tr><td>&nbsp;</td></tr>
+		<tr>
+			<td>
+				An error has occurred while trying to retrieving statistical data.<br/>
+				Possible causes may include:<ul>
+					<li>Daily Statistical Query limit has been reached</li>
+					<li>Server difficulty communicating with Google</li>
+				</ul>
+			</td>
+	</tr></table></div></td></tr>
 	"""
