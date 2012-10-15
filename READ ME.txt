@@ -1,10 +1,5 @@
-V-6.1
+V-6.1.1
 
-JavaScript function change_display added to alert.js to allow instant submit when clicking on one of radio buttons that describe the result layout.
-This function was added so that the user can resubmit the query for a different display format.
-
-A show/hide for Advanced Settings was added.
-	Stat	ON/OFF	(option hidden by default)
-	Aggregation ON/OFF	(option hidden by default)
-
-search_test_3.html created to test this layout.
+Boolean processing added to query_mod.py.
+	A list of boolean words added:	['and', 'or', 'not']
+	A list of punctuations added:	[',', '?', '.', '!', '"', "'", ';']
