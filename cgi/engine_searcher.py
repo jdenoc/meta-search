@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		6.5.1
+## Version:		6.5.2
 ## This file opens search engine webpages and takes the links from them.
 ## This file contains functions that:
 ##		opens sites, retrieves site code, closes site & then returns site code
@@ -14,6 +14,7 @@ import re
 
 def open_doc(link):
 # opens sites, retrieves site code, closes site & then returns site code
+	print link						# TESTING ONLY
 	site = urllib.urlopen(link)		# opens url to search through
 	read_file = site.read()			# reads url (file) text
 	site.close()					# done with url (file), so close it
@@ -37,7 +38,8 @@ link_criterion = "[+',\s$=;@?!%&:\w./_()#-]+"
 
 def link_finder_ddgo(code):
 # searches through DuckDuckGo site for usable url links
-	url_match_ddgo = re.findall(r'(<a rel="nofollow" class="l le" href=")('+link_criterion+')(">)(.+)(</a>)', code)
+	#url_match_ddgo = re.findall(r'(<a rel="nofollow" class="l le" href=")('+link_criterion+')(">)(.+)(</a>)', code)
+	url_match_ddgo = re.findall(r'(<a rel="nofollow" class="large" href=")('+link_criterion+')(">)(.+)(</a>)', code)
 	ddgo_links = link_trimmer(url_match_ddgo)
 	return ddgo_links
 # END link_finder_ddgo

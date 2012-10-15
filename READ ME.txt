@@ -1,5 +1,4 @@
-V-6.5.1
+V-6.5.2
 
-Function stat_display_error added to html_mod.py
-New statistical error utilises this function
-search.cgi updated accordingly.
+Added extra testing display printable lines to search.cgi
+Searchable code in link_finder_ddgo() function in engine_search.py file updated

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.5.1
+## Version:		6.5.2
 ## This file is the main python/cgi file for entire meta-search engine.
 ## The processes it performs are:
 ##		importing functions from other python files
@@ -44,7 +44,7 @@ stat = form.getvalue("stat")				# stores a value that would indicate if the stat
 agr = form.getvalue("agr")					# stores a value that would indicate if the aggrigationg technique is 'on' or not
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
 clustering = form.getvalue("clus")			# stores a value that would indicate if clustering (alternative searches) is turned 'on' or 'off'
-test = ''									# this variable is use for testing only. all related 'if statements' are for testing
+test = '1'									# this variable is use for testing only. all related 'if statements' are for testing
 
 ##### TESTING & ERROR CHECKING #####
 option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
@@ -120,6 +120,8 @@ while page_count < max_page_count:
 		ddgo_link = engine_searcher.next_page_ddgo(ddgo_read)
 		if test:	
 			print '**************************ddgo done**************************', page_count
+			if not ddgo_dict:
+				print '***** There arent links *****'
 	
 # Bing
 	if (option == 'all' or option == 'col' or option == 'bing') and bing_link:
@@ -131,6 +133,8 @@ while page_count < max_page_count:
 		bing_link = engine_searcher.next_page_bing(search_entry, page_count)
 		if test:	
 			print '**************************bing done**************************', page_count
+			if not bing_dict:
+				print '***** There arent links *****'
 	
 # Yahoo
 	if (option == 'all' or option == 'col' or option == 'yahoo') and yahoo_link:
@@ -142,10 +146,14 @@ while page_count < max_page_count:
 		yahoo_link = engine_searcher.next_page_yahoo(yahoo_read)
 		if test:	
 			print '**************************yahoo done**************************', page_count
-	
+			if not bing_dict:
+				print '***** There arent links *****'
+		
 	page_count = page_count + 1		# increment page number
 if test:	
 	print '**************************links retrieved**************************'
+	if not link_dict:
+		print '***** There arent any links at all *****'
 ##### END RETRIEVE LINKS FROM SEARCH ENGINES #####
 
 ##### Google Statistical comparison #####
@@ -190,18 +198,18 @@ if stat == 'on' and (option == 'all' or option == 'col'):
 ##### END Google Statistical comparison #####
 ##### HTML CODE #####
 ##### PAGE HEAD #####
-html_mod.page_head(original_search_entry)
+#html_mod.page_head(original_search_entry)
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
-html_mod.search_area(original_search_entry, text_edit)
-html_mod.result_display_change()
-if clustering == 'yes':
-	query_mod.cluster_display(cluster_dict)
-html_mod.adv_sets(stat, agr, clustering)
+#html_mod.search_area(original_search_entry, text_edit)
+#html_mod.result_display_change()
+#if clustering == 'yes':
+#	query_mod.cluster_display(cluster_dict)
+#html_mod.adv_sets(stat, agr, clustering)
 if stat =='on':
 	stats_mod.stat_display(option, Precision_Scores, Recall_Scores, AP_scores)
-elif stat == 'error':
-	html_mod.stat_display_error()
+#elif stat == 'error':
+#	html_mod.stat_display_error()
 print '<!-- END ADVANCED SETTINGS -->'
 print '</table></form></div>'
 ##### END Re-SEARCH & ADVANCED SETTINGS #####
@@ -210,7 +218,7 @@ print '	<div id="results">'
 print '		<h2><u>Search Results</u></h2>'
 print '		Your search<em><strong>', original_search_entry, '</strong></em>yielded these results:<br/><br/>'
 print '		<div id="scroll-area"><table border="0">'
-result_mod.result_option(option, link_dict, ddgo_dict, bing_dict, yahoo_dict, total_count)
+#result_mod.result_option(option, link_dict, ddgo_dict, bing_dict, yahoo_dict, total_count)
 print '		</table></div>'
 ##### END Search Results #####
 print '	</div>'
