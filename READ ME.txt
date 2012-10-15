@@ -1,5 +1,7 @@
-V-6.1.1
+V-6.2
 
-Boolean processing added to query_mod.py.
-	A list of boolean words added:	['and', 'or', 'not']
-	A list of punctuations added:	[',', '?', '.', '!', '"', "'", ';']
+File html_mod.py created.
+Removed html code from search.cgi and placed into html_mod.py.
+Done to improve modularity.
+
+ONLINE TESTED!

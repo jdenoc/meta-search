@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	query_mod.py
-## Version:		6.1.1
+## Version:		6.2
 ##
 import urllib
 import re
@@ -19,25 +19,23 @@ def tokeniser(search_entry):
 
 def search_entry_editor(entry):
 # Edit search entry to try & improve search performance
-	
-	boolean_list = ['and', 'or', 'not']
-	punct_list = [',', '?', '.', '!', '"', "'", ';']
-	fixed_entry = []			# new list created to store edited search words
-	entry = entry.lower()		# convert entry to lowercase
-	entry = entry.split()		# splits all words
+	boolean_list = ['and', 'or', 'not']						# creates a list of boolean key words
+	punct_list = [',', '?', '.', '!', '"', "'", ';', '`']	# creates a list of punctuation marks that would be removed from query
+	fixed_entry = []										# new list created to store edited search words
+	entry = entry.lower()									# convert entry to lowercase
+	entry = entry.split()									# splits all words
 
 	for word in entry:
 		i = 0
-		while i < len(word):
-		# searches through each word & removes unwanted characters
+		while i < len(word):	# searches through each word & removes unwanted characters
 			if word[i] in punct_list:
 				remove = word[i]
 				word = word.replace(remove, '')
 			else:
 				i = i + 1
-		# checks to see if a word is one of the 3 boolean keywords. Then makes the word UPPER case so that search engine will recognise them.
+		# checks to see if a word is in a list of boolean keywords.
 		if word in boolean_list:
-			word = word.upper()
+			word = word.upper()		# This makes the word UPPER case so that search engines will recognise them.
 			
 		fixed_entry.append(word)
 

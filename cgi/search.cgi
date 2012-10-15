@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.1.1
+## Version:		6.2
 ##
 import cgi
 print "Content-type: text/html\n"
@@ -11,22 +11,24 @@ engine_searcher = '.\\engine_searcher.py'
 query_mod = '.\\query_mod.py'
 result_mod = '.\\result_mod.py'
 stats_mod = '.\\stats_mod.py'
+html_mod = '.\\html_mod.py'
 
 # import NECCESSARY functions from files
 import engine_searcher	# allow the meta-search engine to search other search engines.
 import query_mod		# edit the search enquiry so the meta-search engine may get better results.
 import result_mod		# functions to add links to link_dict & displays them
 import stats_mod		# used to find statistical comparisons between this engine & google
+import html_mod			# used to display html code of results page
 
 # retrieves information sent from home/front page
 form = cgi.FieldStorage()
 search_entry = form.getvalue("search")		# stores the entry the user wishes to search for
 text_edit = form.getvalue("process")		# stores a value from main page indicating if search entry will be edited
 option = form.getvalue("adv_dis")			# stores a value that indicates how the user would like to view the results
-stat = form.getvalue("stat")
-agr = form.getvalue("agr")
+stat = form.getvalue("stat")				# stores a value that would indicate if the statistics analysis is 'on' or not
+agr = form.getvalue("agr")					# stores a value that would indicate if the aggrigationg technique is 'on' or not
 total_count = form.getvalue("total")		# stores a value for the amount of pages that must be processde from the search engines
-test = ''									# this variable is use for testing only. all related if statements are for testing
+test = ''									# this variable is use for testing only. all related 'if statements' are for testing
 
 ##### TESTING & ERROR CHECKING #####
 option_list = ['all', 'col', 'bing', 'ddgo', 'yahoo']
@@ -51,7 +53,7 @@ if not agr:
 	agr = 'on'		
 if test:
 	print '**************************end error check**************************'
-##### END TESTING & ERROR CHECKING#####
+##### END TESTING & ERROR CHECKING #####
 
 original_search_entry = search_entry		# stores original search entry in its unedited form
 
@@ -124,6 +126,7 @@ if test:
 
 ##### Google Statistical comparison #####
 if stat == 'on' and (option == 'all' or option == 'col'):
+# if statment done in an effort to minimise possible errors that may occur
 	try:		# if there are any errors between here and 'except:', then 'except:' is run and 'stat' variable is given a value of 'off'
 # Google results
 		google_dict = stats_mod.google_api(search_entry, total_count)
@@ -154,100 +157,20 @@ if stat == 'on' and (option == 'all' or option == 'col'):
 		AP_score_meta = stats_mod.Average_Precision(link_dict, google_dict)
 		AP_score_yahoo = stats_mod.Average_Precision(yahoo_dict, google_dict)
 		AP_scores = ['meta:'+str(AP_score_meta), 'bing:'+str(AP_score_bing), 'yahoo:'+str(AP_score_yahoo), 'duckduckgo:'+str(AP_score_ddgo)]
-		if test:	
+		if test:
 			print '**************************Average Precision done**************************'
 	except:
 		stat = 'off'
-if test:	
+if test:
 	print '**************************stats done**************************'
 ##### END Google Statistical comparison #####
 
 ##### HTML CODE #####
 ##### PAGE HEAD #####
-print """
-<html><head>
-<link rel="stylesheet" href="../css/design.css" />
-<link rel="icon" href="../imgs/icons/meta.ico" type="image/x-icon" />
-<script type="text/javascript" src="../js/alerts.js"></script>
-"""
-print '<title>'+original_search_entry+' : Meta-Search Results</title>'
-print '</head>'
+html_mod.page_head(original_search_entry)
 ##### END PAGE HEAD #####
 ##### PAGE BODY #####
-print '<body><div id="container">'
-##### Re-SEARCH & ADVANCED SETTINGS #####
-print """
-<div id="re-search">
-<form action="search.cgi" method="get" id="search-form" name="engine" onsubmit="valid_search();return too_many()">
-<table align="center" border="0" width="490px"><tr>
-	<td colspan="2">
-		<h1>Meta-Search Engine</h1>
-	</td>
-</tr><tr>
-<!-- SEARCH -->
-"""
-print '	<td align="right" width="80%"><input type="text" name="search" id="search-box" value="'+original_search_entry+'" /></td>'
-print """
-	<td>&nbsp;&nbsp;&nbsp;<input type="submit" id="search-button" value="Search!" /></td>
-</tr><tr>
-	<td colspan="2" align="right">
-		Pre-process Query: <input type="radio" name="process" value="bfsdjkfbsj" checked />On&nbsp;&nbsp;
-		<input type="radio" name="process" value="" />Off
-	</td>
-<!-- END SEARCH -->
-</tr></table>
-</div><br/>
-<div id="adv_sys"><table border="0" width="225px">
-<!-- ADVANCED SETTINGS -->
-	<tr><td align="center" colspan="2"><strong><u>Display</u></strong></td></tr>
-	<tr><td>&nbsp;</td></tr>
-	<tr>
-		<td>Standard: </td>
-
-		<td align="center"><input type="radio" name="adv_dis" value="all" onclick="change_display()" /></td>
-	</tr><tr>
-		<td>Columned: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="col" onclick="change_display()" /></td>
-	</tr><tr>
-		<td>Bing Results Only: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="bing" onclick="change_display()" /></td>
-	</tr><tr>
-		<td>DuckDuckGo Results Only: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="ddgo" onclick="change_display()" /></td>
-	</tr><tr>
-		<td>Yahoo! Results Only: </td>
-		<td align="center"><input type="radio" name="adv_dis" value="yahoo" onclick="change_display()" /></td>
-	</tr><tr>
-		<td>&nbsp;</td>
-	</tr><tr>
-		<td align="center" colspan="2"><strong>Maximum Results: </strong></td>
-	<tr></tr>
-		<td align="center" colspan="2"><input type="text" name="total" /></td>
-	</tr><tr>
-		<td>&nbsp;</td>
-	</tr><tr>
-		<td><div id="adv_sets_off" style="display:block">
-			<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('adv_sets_on');hideStuff('adv_sets_off')"><strong>Advanced Settings &#9660;</strong></a>
-		</div><div id="adv_sets_on" style="display:none">
-			<a href="#" title="Show/Hide Advanced Settings" onclick="showStuff('adv_sets_off');hideStuff('adv_sets_on')"><strong>Advanced Settings &#9650;</strong></a>
-			<table><tr>
-				<td align="right">Stats:&nbsp;&nbsp;&nbsp;</td>
-				<td>
-					<input type="radio" name="stat" value="on" />ON<br/>
-					<input type="radio" name="stat" value="off" checked />OFF
-				</td>
-			</tr><tr>
-				<td align="right">Aggrigation:</td>
-				<td>
-					<input type="radio" name="agr" value="on" checked />ON<br/>
-					<input type="radio" name="agr" value="off" />OFF
-				</td>
-			</tr></table>
-		</div></td>
-	</tr><tr>
-		<td>&nbsp;</td>
-	</tr>
-"""
+html_mod.page_body(original_search_entry)
 if stat == 'on':
 	stats_mod.stat_display(option, Precision_Scores, Recall_Scores, AP_scores)
 print '<!-- END ADVANCED SETTINGS -->'
