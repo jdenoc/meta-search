@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	search.cgi
-## Version:		6.5.2
+## Version:		6.5.3
 ## This file is the main python/cgi file for entire meta-search engine.
 ## The processes it performs are:
 ##		importing functions from other python files
@@ -146,7 +146,7 @@ while page_count < max_page_count:
 		yahoo_link = engine_searcher.next_page_yahoo(yahoo_read)
 		if test:	
 			print '**************************yahoo done**************************', page_count
-			if not bing_dict:
+			if not yahoo_dict:
 				print '***** There arent links *****'
 		
 	page_count = page_count + 1		# increment page number

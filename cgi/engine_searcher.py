@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	engine_searcher.py
-## Version:		6.5.2
+## Version:		6.5.3
 ## This file opens search engine webpages and takes the links from them.
 ## This file contains functions that:
 ##		opens sites, retrieves site code, closes site & then returns site code
@@ -14,7 +14,7 @@ import re
 
 def open_doc(link):
 # opens sites, retrieves site code, closes site & then returns site code
-	print link						# TESTING ONLY
+	#print link						# TESTING ONLY
 	site = urllib.urlopen(link)		# opens url to search through
 	read_file = site.read()			# reads url (file) text
 	site.close()					# done with url (file), so close it
@@ -38,7 +38,6 @@ link_criterion = "[+',\s$=;@?!%&:\w./_()#-]+"
 
 def link_finder_ddgo(code):
 # searches through DuckDuckGo site for usable url links
-	#url_match_ddgo = re.findall(r'(<a rel="nofollow" class="l le" href=")('+link_criterion+')(">)(.+)(</a>)', code)
 	url_match_ddgo = re.findall(r'(<a rel="nofollow" class="large" href=")('+link_criterion+')(">)(.+)(</a>)', code)
 	ddgo_links = link_trimmer(url_match_ddgo)
 	return ddgo_links
@@ -46,6 +45,7 @@ def link_finder_ddgo(code):
 
 def link_finder_bing(code):
 # searches through Bing site for usable url links
+	#url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
 	url_match_bing = re.findall(r'(<h3><a href=")('+link_criterion+')(" onmousedown="return si_T.+?">)(.+?)(</a>)', code)	# (.+?)		This indicates 1 or more of any character, but in a non-greedy form
 	if url_match_bing:
 		bing_links = link_trimmer(url_match_bing)
@@ -54,7 +54,7 @@ def link_finder_bing(code):
 	
 def link_finder_yahoo(code):
 # searches through Yahoo site for usable links
-	url_match_yahoo = re.findall(r'(<a class="yschttl spt" href=")('+link_criterion+')(" data-.+?>)(.+?)(</a>)', code)
+	url_match_yahoo = re.findall(r'(<h3><a id=".+?" class="yschttl spt" href=")('+link_criterion+')(.+?>)(.+?)(</a>)', code)
 	if url_match_yahoo:
 		yahoo_links = link_trimmer(url_match_yahoo)
 		return yahoo_links

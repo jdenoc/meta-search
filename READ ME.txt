@@ -1,4 +1,4 @@
-V-6.5.2
+V-6.5.3
 
-Added extra testing display printable lines to search.cgi
-Searchable code in link_finder_ddgo() function in engine_search.py file updated
+Search code criteria in link_finder_yahoo() function in engine_search.py file updated
+Minor Test display code corrected in search.cgi file
