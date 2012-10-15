@@ -20,9 +20,6 @@ h1{
 	width: 900px;
 }
 
-#opening_address{
-}
-
 #feed_form{
 	height: 555px;
 	overflow:auto;
@@ -32,7 +29,7 @@ h1{
 	-moz-border-radius: 10px ;
 	-webkit-border-radius: 10px ;
 	width:725px;
-		margin-left:auto;
+	margin-left:auto;
 	margin-right:auto;
 	padding:20px;
 	height:615px;
@@ -41,4 +38,28 @@ h1{
 .important{
 	color:#F00;
 	font-weight:bold;
+}
+
+a:link,
+a:visited{
+	color:#CCC;
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:underline;
+	color:#C90;
+}
+
+.button{
+	border: 0px solid black ;
+	height: 25px;
+	width: 65px;
+	border-radius: 10px ;
+	-moz-border-radius: 10px ;
+	-webkit-border-radius: 10px ;
+	font-family:"Comic Sans MS", cursive;
+	font-weight:bolder;
+	font-size:14px;
+	cursor:pointer;
 }

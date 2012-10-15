@@ -32,7 +32,8 @@
 			if(empty($_POST['engine_other'])){
 				$error['engine_other'] = 'Please enter a search engine name';
 			}else{
-				$_POST['engine_other'] = trim($_POST['engine_other'])
+				$_POST['engine_other'] = trim($_POST['engine_other']);
+			}
 		}
 		// (2)
 		if (empty($_POST['result_quality'])){
@@ -66,6 +67,14 @@
 		if (empty($_POST['aggrigation'])){
 			$error['aggrigation'] = 'Please choose a value for Q.9';
 		}
+		// (10)
+		if (empty($_POST['pre-pro'])){
+			$error['pre-pro'] = 'Please choose a value for Q.10';
+		}
+		// (11)
+		if (empty($_POST['num_results'])){
+			$error['num_results'] = 'Please choose a value for Q.11';
+		}
 		//
 		if (empty($_POST['age'])){
 			$error['age'] = 'Please choose an age group from the drop-down menu';
@@ -77,6 +86,9 @@
 		//
 		if (!empty($_POST['name'])){
 			$_POST['name'] = trim($_POST['name']);
+		}
+		if (!empty($_POST['probs'])){
+			$_POST['probs'] = trim($_POST['probs']);
 		}
 		if (!empty($_POST['comments'])){
 			$_POST['comments'] = trim($_POST['comments']);
@@ -99,6 +111,9 @@
 			$MESSAGE_BODY .= "Q7. : ".$_POST["clustering"]."<br/>";
 			$MESSAGE_BODY .= "Q8. : ".$_POST["display"]."<br/>";
 			$MESSAGE_BODY .= "Q9. : ".$_POST["aggrigation"]."<br/>";
+			$MESSAGE_BODY .= "Q10. : ".$_POST["pre-pro"]."<br/>";
+			$MESSAGE_BODY .= "Q11. : ".$_POST["num_results"]."<br/>";
+			$MESSAGE_BODY .= "Errors/Problems. : ".$_POST["probs"]."<br/>";
 			$MESSAGE_BODY .= "Comments: ".nl2br($_POST["comments"])."<br>"; 
 			mail($ToEmail, $EmailSubject, $MESSAGE_BODY, $mailheader) or die ("Failure");?>
 			<meta HTTP-EQUIV="REFRESH" content="0; url=sent.html">
@@ -208,10 +223,12 @@
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td colspan="10">
+		<td colspan="3">
 			7.&nbsp;&nbsp;&nbsp;I found the alternative searches useful.
 			<span class="important">*</span>
 		</td>
+		<td><a href="imgs/feed_img1.jpg" target="_blank" title="Alternative Searches">Example1</a></td>
+		<td><a href="imgs/feed_img2.jpg" target="_blank" title="Alternative Searches">Example2</a></td>
 	</tr><tr>
 		<td><input type="radio" name="clustering" value="1" <?php if (isset($_POST['clustering']) && $_POST['clustering'] == '1'){ echo'checked'; } ?> />1</td>
 		<td><input type="radio" name="clustering" value="2" <?php if (isset($_POST['clustering']) && $_POST['clustering'] == '2'){ echo'checked'; } ?> />2</td>
@@ -221,10 +238,12 @@
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td colspan="10">
+		<td colspan="3">
 			8.&nbsp;&nbsp;&nbsp;Which display did you find the best?
 			<span class="important">*</span>
 		</td>
+		<td><a href="imgs/feed_img3.jpg" target="_blank" title="Display Choice Front page">Example3</a></td>
+		<td><a href="imgs/feed_img4.jpg" target="_blank" title="Display Choice Results page">Example4</a></td>
 	</tr><tr>
 		<td><input type="radio" name="display" value="all" <?php if (isset($_POST['display']) && $_POST['display'] == 'all'){ echo'checked'; } ?> />Standard</td>
 		<td><input type="radio" name="display" value="col" <?php if (isset($_POST['display']) && $_POST['display'] == 'col'){ echo'checked'; } ?> />Columned</td>
@@ -234,11 +253,13 @@
 		<td><input type="radio" name="display" value="n/a" <?php if (isset($_POST['display']) && $_POST['display'] == 'n/a'){ echo'checked'; } ?> />Don't<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Know</td>
 	</tr><tr>
 		<td>&nbsp;</td>
-		</tr><tr>
-		<td colspan="10">
+	</tr><tr>
+		<td colspan="4">
 			9.&nbsp;&nbsp;&nbsp;A better set of results were obtained with <em>aggrigation</em> turned:
 			<span class="important">*</span>
 		</td>
+		<td><a href="imgs/feed_img5.jpg" title="Turn On/Off Aggrigation Front page" target="_blank">Example5</a></td>
+		<td><a href="imgs/feed_img6.jpg" title="Turn On/Off Aggrigation Results Page" target="_blank">Example6</a></td>
 	</tr><tr>
 		<td>&nbsp;</td>
 		<td><input type="radio" name="aggrigation" value="on" <?php if (isset($_POST['aggrigation']) && $_POST['aggrigation'] == 'on'){ echo'checked'; } ?> />ON</td>
@@ -247,11 +268,50 @@
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td align="center">Name:</td>
-		<td colspan="3"><input type="text" name="name" value="<?php echo $_POST['name'];?>" /></td>
+		<td colspan="4">
+			10.&nbsp;&nbsp;&nbsp;A better set of results were obtained with <em>Pre-Processing</em> turned:
+			<span class="important">*</span>
+		</td>
+		<td><a href="imgs/feed_img7.jpg" title="Turn On/Off Pre-Processing Front page" target="_blank">Example7</a></td>
+		<td><a href="imgs/feed_img8.jpg" title="Turn On/Off Pre-Processing Results Page" target="_blank">Example8</a></td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td><input type="radio" name="pre-pro" value="on" <?php if (isset($_POST['pre-pro']) && $_POST['pre-pro'] == 'on'){ echo'checked'; } ?> />ON</td>
+		<td><input type="radio" name="pre-pro" value="off" <?php if (isset($_POST['pre-pro']) && $_POST['pre-pro'] == 'off'){ echo'checked'; } ?> />OFF</td>
+		<td><input type="radio" name="pre-pro" value="n/a" <?php if (isset($_POST['pre-pro']) && $_POST['pre-pro'] == 'n/a'){ echo'checked'; } ?> />Don't Know</td>
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
+		<td colspan="10">
+			11.&nbsp;&nbsp;&nbsp;An adequate number of results were produced.
+			<span class="important">*</span>
+		</td>
+	</tr><tr>
+		<td><input type="radio" name="num_results" value="1" <?php if (isset($_POST['num_results']) && $_POST['num_results'] == '1'){ echo'checked'; } ?> />1</td>
+		<td><input type="radio" name="num_results" value="2" <?php if (isset($_POST['num_results']) && $_POST['num_results'] == '2'){ echo'checked'; } ?> />2</td>
+		<td><input type="radio" name="num_results" value="3" <?php if (isset($_POST['num_results']) && $_POST['num_results'] == '3'){ echo'checked'; } ?> />3</td>
+		<td><input type="radio" name="num_results" value="4" <?php if (isset($_POST['num_results']) && $_POST['num_results'] == '4'){ echo'checked'; } ?> />4</td>
+		<td><input type="radio" name="num_results" value="5" <?php if (isset($_POST['num_results']) && $_POST['num_results'] == '5'){ echo'checked'; } ?> />5</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+	</tr><tr>
+		<td colspan="3">
+			12.&nbsp;&nbsp;&nbsp;Any Errors/Problems found during evaluation:<br/>(Please be as detailed as possible)
+		</td>
+		<td colspan="7"><textarea cols="35" rows="4" name="probs" value="<?php echo $_POST['probs'];?>"></textarea></td>
+	</tr><tr>
+		<td colspan="10"><hr/></td>
+	</tr><tr>
+		<td>
+			&nbsp;Gender:
+			<span class="important">*</span>
+		</td>
+		<td><input type="radio" name="sex" value="m" <?php if (isset($_POST['sex']) && $_POST['sex'] == 'm'){ echo'checked'; } ?> />Male</td>
+		<td><input type="radio" name="sex" value="f" <?php if (isset($_POST['sex']) && $_POST['sex'] == 'f'){ echo'checked'; } ?> />Female</td>
+		<td><input type="radio" name="sex" value="?" <?php if (isset($_POST['sex']) && $_POST['sex'] == '?'){ echo'checked'; } ?> />Other</td>
+	</tr><tr>
+		<td align="center">Name:</td>
+		<td colspan="2"><input type="text" name="name" value="<?php echo $_POST['name'];?>" /></td>
 		<td>
 			&nbsp;Age Group
 			<span class="important">*</span>
@@ -270,25 +330,15 @@
 			<option value="50+" <?php if (isset($_POST['age']) && $_POST['age'] == '50+'){ echo'selected'; } ?> > 50 + </option>
 		</select></td>
 	</tr><tr>
-		<td>&nbsp;</td>
-	</tr><tr>
-		<td>
-			&nbsp;Gender:
-			<span class="important">*</span>
-		</td>
-		<td><input type="radio" name="sex" value="m" <?php if (isset($_POST['sex']) && $_POST['sex'] == 'm'){ echo'checked'; } ?> />Male</td>
-		<td><input type="radio" name="sex" value="f" <?php if (isset($_POST['sex']) && $_POST['sex'] == 'f'){ echo'checked'; } ?> />Female</td>
-		<td><input type="radio" name="sex" value="?" <?php if (isset($_POST['sex']) && $_POST['sex'] == '?'){ echo'checked'; } ?> />Other</td>
-	</tr><tr>
 		<td colspan="2" align="center">Any other Comments:</td>
 		<td colspan="8"><textarea cols="35" rows="4" name="comments" value="<?php echo $_POST['comments'];?>"></textarea></td>
 	</tr><tr>
 		<td>&nbsp;</td>
 	</tr><tr>
-		<td colspan="2">&nbsp;</td>
+		<td>&nbsp;</td>
 		<td colspan="3" align="center">
-			<input type="submit" name="Submit" value="Send Feedback"/>&nbsp;&nbsp;&nbsp;
-			<input type="reset" />
+			<input type="submit" name="Submit" value="Send" class="button"/>&nbsp;&nbsp;&nbsp;
+			<input type="reset" class="button" />
 		</td>
 	</tr><tr>
 		<td>&nbsp;</td>

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ##
 ## Filename:	html_mod.py
-## Version:		6.4
+## Version:		6.4.1
 ##
 import urllib
 import re
@@ -39,6 +39,8 @@ def search_area(original_search_entry):
 			<input type="radio" name="process" value="" />Off
 		</td>
 	<!-- END SEARCH -->
+	</tr><tr>
+		<td><a href="../feedback.php" target="_blank" title="Please Give Feedback!">Feedback.php</a></td>
 	</tr></table>
 	</div><br/>
 	"""
@@ -94,7 +96,7 @@ def adv_sets():
 						<input type="radio" name="agr" value="off" />OFF
 					</td>
 				</tr><tr>
-					<td align="right">Related Searches:</td>
+					<td align="right">Alternative Searches:</td>
 					<td>
 						<input type="radio" name="clus" value="yes" checked />ON<br/>
 						<input type="radio" name="clus" value="" />OFF

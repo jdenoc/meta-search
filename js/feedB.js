@@ -1,6 +1,6 @@
 /*
 Filename:	feedB.js
-Version:	6.4.1
+Version:	6.4
 */
 
 /* *** SHOW/HIDE items *** */
