@@ -1,7 +1,9 @@
 /*
 Filename:	design.css 
-Version:	6.5.1
-This file contains the styles for the main search page and the results page
+Version:	6.6
+This file contains the styles for the main search page and the results page.
+Pages will be displayed based on the size of the screen the site is being displayed upon.
+This will display for devices with screen width resolution of 900px or greater
 */
 
 body{

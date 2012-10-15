@@ -1,3 +1,5 @@
-V-6.5.4
+V-6.6
 
-Search code criteria updated for link_finder_bing() function in engine_searcher.py file
+Decided to enact layouts for screens smaller than those of Laptops & Desktops
+index.html updated for this
+Info text in design.css updated to reflect this
