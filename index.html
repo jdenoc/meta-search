@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--
 Filename:	index.html
-Version:	6.6
+Version:	6.6.1
 This is the main search page of the meta-search engine. All users start here.
 -->
 <head>
@@ -10,21 +10,19 @@ This is the main search page of the meta-search engine. All users start here.
 <script type="text/javascript" src="js/alerts.js"></script>
 <title>Meta-Search</title>
 <!--
-<link rel="stylesheet" media="all and (max-device-width: 480px)" href="iphone.css"> 
-<link rel="stylesheet" media="all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" href="ipad-portrait.css"> 
-<link rel="stylesheet" media="all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" href="ipad-landscape.css"> 
-<link rel="stylesheet" media="all and (min-device-width: 1025px)" href="ipad-landscape.css">
+Originally this was for Stylesheets
 <link rel="stylesheet" href="css/design.css" />
+but change to below 
 -->
-<link rel="stylesheet" media="all and (min-device-width: 300px) and (max-device-width: 481px)" href="css/smart-design.css" />
-<link rel="stylesheet" media="all and (min-device-width: 481px) and (max-device-width: 1025px)" href="css/tablet-design.css" />
-<link rel="stylesheet" media="all and (min-device-width: 900px)" href="css/design.css" />
+<link rel="stylesheet" media="screen and (max-device-width: 481px)" href="css/smart-design.css" />
+<link rel="stylesheet" media="screen and (min-device-width: 481px) and (max-device-width: 900px)" href="css/tablet-design.css" />
+<link rel="stylesheet" media="screen and (min-device-width: 901px)" href="css/design.css" />
 
 <link rel="icon" href="imgs/icons/meta.ico" type="image/x-icon" />
 </head>
 
 <body><div id="container">
-<table border="1" align="center"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="return valid_search()">
+<table border="0" align="center"><form action="cgi/search.cgi" method="get" id="search-form" name="engine" onsubmit="return valid_search()">
 	<tr>
     	<td colspan="2">
         	<h1>Meta-Search Engine</h1>

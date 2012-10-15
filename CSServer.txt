@@ -1,0 +1,7 @@
+http://csserver.ucd.ie/~10972081
+
+10972081
+imdswmo4
+
+all files must have permissions of 644 to be accessed online
+script files (.py/.cgi) must have permissions of 700 to work
